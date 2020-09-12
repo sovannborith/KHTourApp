@@ -7,7 +7,6 @@
  */
 
 import React, { useEffect } from "react";
-import { View, ActivityIndicator } from "react-native";
 import {
   NavigationContainer,
   DefaultTheme as NavigationDefaultTheme,
@@ -20,7 +19,7 @@ import {
   DefaultTheme as PaperDefaultTheme,
   DarkTheme as PaperDarkTheme,
 } from "react-native-paper";
-
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { DrawerContent } from "./src/screens/DrawerContent";
 import MainTabScreen from "./src/screens/MainTabScreen";
 
@@ -29,10 +28,8 @@ import SettingsScreen from "./src/screens/SettingsScreen";
 import BookmarkScreen from "./src/screens/BookmarkScreen";
 
 import { AuthContext } from "./src/components/context";
+import AsyncStorage from "@react-native-community/async-storage";
 
-import RootStackScreen from "./src/screens/RootStackScreen";
-
-//import AsyncStorage from "@react-native-community/async-storage";
 const Drawer = createDrawerNavigator();
 
 const App = () => {
@@ -111,8 +108,6 @@ const App = () => {
   const authContext = React.useMemo(
     () => ({
       signIn: async (foundUser) => {
-        // setUserToken('fgkj');
-        // setIsLoading(false);
         const userToken = String(foundUser[0].userToken);
         const userName = foundUser[0].username;
 
@@ -160,28 +155,11 @@ const App = () => {
     }, 1000);
   }, []);
 
-  if (loginState.isLoading) {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
-  }
   return (
     <PaperProvider theme={theme}>
       <AuthContext.Provider value={authContext}>
-        <NavigationContainer theme={theme}>
-          <RootStackScreen />
-          {/* <Drawer.Navigator
-            drawerContent={(props) => <DrawerContent {...props} />}
-          >
-            <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
-            <Drawer.Screen name="SupportScreen" component={SupportScreen} />
-            <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
-            <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
-          </Drawer.Navigator> */}
-
-          {/* {loginState.userToken !== null ? (
+        <SafeAreaProvider>
+          <NavigationContainer theme={theme}>
             <Drawer.Navigator
               drawerContent={(props) => <DrawerContent {...props} />}
             >
@@ -190,13 +168,10 @@ const App = () => {
               <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
               <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
             </Drawer.Navigator>
-          ) : (
-            <RootStackScreen />
-          )} */}
-        </NavigationContainer>
+          </NavigationContainer>
+        </SafeAreaProvider>
       </AuthContext.Provider>
     </PaperProvider>
   );
 };
-
 export default App;

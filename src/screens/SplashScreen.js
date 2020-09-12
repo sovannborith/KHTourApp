@@ -11,21 +11,18 @@ export default class SplashScreen extends React.Component {
     this.state = {
       progress: new Animated.Value(0),
     };
-  }
 
-  componentDidMount() {
-    Animated.timing(this.state.progress, {
-      toValue: 1,
-      duration: 5000,
-      easing: Easing.linear,
-      useNativeDriver: true,
-    }).start();
-  }
-  render() {
     setTimeout(() => {
+      Animated.timing(this.state.progress, {
+        toValue: 1,
+        duration: 5000,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }).start();
       this.props.navigation.navigate("Home");
     }, 5000);
-
+  }
+  render() {
     return (
       <View style={styles.container}>
         <LottieView

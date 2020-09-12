@@ -1,11 +1,13 @@
 import React from "react";
 
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
-//import AnimatedTabBar, { TabsConfigsType } from "curved-bottom-navigation-bar";
+import AnimatedTabBar, { TabsConfigsType } from "curved-bottom-navigation-bar";
 
+import IconAnt from "react-native-vector-icons/AntDesign";
 import Icon from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import Icon5 from "react-native-vector-icons/FontAwesome5";
 
 import { useTheme, Avatar } from "react-native-paper";
 import { View } from "react-native-animatable";
@@ -18,47 +20,62 @@ import ExploreScreen from "./ExploreScreen";
 import ProfileScreen from "./ProfileScreen";
 import SplashScreen from "./SplashScreen";
 import EditProfileScreen from "./EditProfileScreen";
+import {
+  PRIMARY_COLOR,
+  ICON_ACTIVE_COLOR,
+  PRIMARY_BG_COLOR,
+} from "../constants/constant";
 
 const HomeStack = createStackNavigator();
 const NotificationStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
-/* const tabs = {
+
+const Tab = createBottomTabNavigator();
+
+const tabs = {
   Home: {
-    icon: ({ progress }) => <IonIcon name="ios-home" />,
+    icon: ({ progress }) => (
+      <IconAnt name={"home"} size={26} color={PRIMARY_COLOR} />
+    ),
   },
-  Notification: {
-    icon: ({ progress }) => <IonIcon name="ios-notification" />,
+  Notifications: {
+    icon: ({ progress }) => (
+      <IconAnt name={"notification"} size={26} color={PRIMARY_COLOR} />
+    ),
   },
   Profile: {
     icon: ({ progress }) => (
-      <Icon name={"ios-person"} color={"green"} size={26} />
+      <IconAnt name={"user"} size={26} color={PRIMARY_COLOR} />
     ),
   },
   Explore: {
     icon: ({ progress }) => (
-      <Icon name={"ios-aperture"} color={"green"} size={26} />
+      <Icon5 name={"search-location"} size={26} color={PRIMARY_COLOR} />
     ),
-  }, 
-}; */
-
-const Tab = createMaterialBottomTabNavigator();
+  },
+};
 
 const MainTabScreen = () => (
   <Tab.Navigator
-    initialRouteName="Home"
-    /* tabBar={(props) => (
-      <AnimatedTabBar barColor={"green"} tabs={tabs} {...props} /> 
-    )}*/
+    tabBar={(props) => (
+      <AnimatedTabBar barColor={"#91005f"} tabs={tabs} {...props} />
+    )}
   >
+    {/* <Tab.Screen
+      name="SplashScreen"
+      component={SplashScreen}
+      options={{
+        tabBarLabel: "",
+        tabBarColor: "#FF6347",
+        tabBarVisible: false,
+      }}
+    /> */}
     <Tab.Screen
       name="Home"
       component={HomeStackScreen}
       options={{
         tabBarLabel: "Home",
         tabBarColor: "#FF6347",
-        tabBarIcon: ({ color }) => (
-          <Icon name="ios-home" color={color} size={26} />
-        ),
       }}
     />
     <Tab.Screen
@@ -67,9 +84,6 @@ const MainTabScreen = () => (
       options={{
         tabBarLabel: "Updates",
         tabBarColor: "#1f65ff",
-        tabBarIcon: ({ color }) => (
-          <Icon name="ios-notifications" color={color} size={26} />
-        ),
       }}
     />
     <Tab.Screen
@@ -78,9 +92,6 @@ const MainTabScreen = () => (
       options={{
         tabBarLabel: "Profile",
         tabBarColor: "#694fad",
-        tabBarIcon: ({ color }) => (
-          <Icon name="ios-person" color={color} size={26} />
-        ),
       }}
     />
     <Tab.Screen
@@ -89,20 +100,17 @@ const MainTabScreen = () => (
       options={{
         tabBarLabel: "Explore",
         tabBarColor: "#d02860",
-        tabBarIcon: ({ color }) => (
-          <Icon name="ios-aperture" color={color} size={26} />
-        ),
       }}
     />
   </Tab.Navigator>
 );
 
-export default MainTabScreen;
-
 const HomeStackScreen = ({ navigation }) => {
   const { colors } = useTheme();
   return (
     <HomeStack.Navigator
+      initialRouteName="Home"
+      headerMode="none"
       screenOptions={{
         headerStyle: {
           backgroundColor: colors.background,
@@ -115,12 +123,13 @@ const HomeStackScreen = ({ navigation }) => {
         },
       }}
     >
-      <HomeStack.Screen name="Splash" component={SplashScreen} />
+      {/* <HomeStack.Screen name="Splash" component={SplashScreen} /> */}
       <HomeStack.Screen
         name="Home"
         component={HomeScreen}
         options={{
           title: "FoodFinder",
+
           headerLeft: () => (
             <View style={{ marginLeft: 10 }}>
               <Icon.Button
@@ -264,4 +273,14 @@ const ProfileStackScreen = ({ navigation }) => {
     </ProfileStack.Navigator>
   );
 };
-//console.log(tabs.Home.icon.component);
+
+/* const mainStack = createStackNavigator();
+
+const MainStackScreen = () => {
+  <mainStack.Navigator initialRouteName="SplashScreen" headerMode="none">
+    <mainStack.Screen name="SplashScreen" component={SplashScreen} />
+    <mainStack.Screen name="MainTabBarS" component={MainTabBarScreen} />
+  </mainStack.Navigator>;
+}; */
+
+export default MainTabScreen;
