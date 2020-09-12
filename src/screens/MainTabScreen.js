@@ -1,38 +1,33 @@
 import React from "react";
 
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
-import AnimatedTabBar, { TabsConfigsType } from "curved-bottom-navigation-bar";
+//import AnimatedTabBar, { TabsConfigsType } from "curved-bottom-navigation-bar";
 
 import Icon from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-
-import HomeScreen from "./HomeScreen";
-import NotificationScreen from "./NotificationScreen";
-import ExploreScreen from "./ExploreScreen";
-import ProfileScreen from "./ProfileScreen";
-import EditProfileScreen from "./EditProfileScreen";
 
 import { useTheme, Avatar } from "react-native-paper";
 import { View } from "react-native-animatable";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import CardListScreen from "./CardListScreen";
 import CardItemDetails from "./CardItemDetails";
+import HomeScreen from "./HomeScreen";
+import NotificationScreen from "./NotificationScreen";
+import ExploreScreen from "./ExploreScreen";
+import ProfileScreen from "./ProfileScreen";
+import SplashScreen from "./SplashScreen";
+import EditProfileScreen from "./EditProfileScreen";
 
 const HomeStack = createStackNavigator();
 const NotificationStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
-
-const tabs = {
+/* const tabs = {
   Home: {
-    icon: ({ progress }) => (
-      <Icon name={"ios-home"} color={"green"} size={26} />
-    ),
+    icon: ({ progress }) => <IonIcon name="ios-home" />,
   },
   Notification: {
-    icon: ({ progress }) => (
-      <Icon name={"ios-notifications"} color={"green"} size={26} />
-    ),
+    icon: ({ progress }) => <IonIcon name="ios-notification" />,
   },
   Profile: {
     icon: ({ progress }) => (
@@ -43,59 +38,61 @@ const tabs = {
     icon: ({ progress }) => (
       <Icon name={"ios-aperture"} color={"green"} size={26} />
     ),
-  },
-};
-const Tab = createBottomTabNavigator();
+  }, 
+}; */
+
+const Tab = createMaterialBottomTabNavigator();
 
 const MainTabScreen = () => (
   <Tab.Navigator
-    tabBar={(props) => (
-      <AnimatedTabBar barColor={"green"} tabs={tabs} {...props} />
-    )}
+    initialRouteName="Home"
+    /* tabBar={(props) => (
+      <AnimatedTabBar barColor={"green"} tabs={tabs} {...props} /> 
+    )}*/
   >
     <Tab.Screen
       name="Home"
       component={HomeStackScreen}
-      /* options={{
+      options={{
         tabBarLabel: "Home",
         tabBarColor: "#FF6347",
         tabBarIcon: ({ color }) => (
           <Icon name="ios-home" color={color} size={26} />
         ),
-      }} */
+      }}
     />
     <Tab.Screen
       name="Notifications"
       component={NotificationStackScreen}
-      /* options={{
+      options={{
         tabBarLabel: "Updates",
         tabBarColor: "#1f65ff",
         tabBarIcon: ({ color }) => (
           <Icon name="ios-notifications" color={color} size={26} />
         ),
-      }} */
+      }}
     />
     <Tab.Screen
       name="Profile"
       component={ProfileStackScreen}
-      /* options={{
+      options={{
         tabBarLabel: "Profile",
         tabBarColor: "#694fad",
         tabBarIcon: ({ color }) => (
           <Icon name="ios-person" color={color} size={26} />
         ),
-      }} */
+      }}
     />
     <Tab.Screen
       name="Explore"
       component={ExploreScreen}
-      /* options={{
+      options={{
         tabBarLabel: "Explore",
         tabBarColor: "#d02860",
         tabBarIcon: ({ color }) => (
           <Icon name="ios-aperture" color={color} size={26} />
         ),
-      }} */
+      }}
     />
   </Tab.Navigator>
 );
@@ -118,6 +115,7 @@ const HomeStackScreen = ({ navigation }) => {
         },
       }}
     >
+      <HomeStack.Screen name="Splash" component={SplashScreen} />
       <HomeStack.Screen
         name="Home"
         component={HomeScreen}
@@ -266,3 +264,4 @@ const ProfileStackScreen = ({ navigation }) => {
     </ProfileStack.Navigator>
   );
 };
+//console.log(tabs.Home.icon.component);

@@ -171,14 +171,15 @@ const App = () => {
     <PaperProvider theme={theme}>
       <AuthContext.Provider value={authContext}>
         <NavigationContainer theme={theme}>
-          <Drawer.Navigator
+          <RootStackScreen />
+          {/* <Drawer.Navigator
             drawerContent={(props) => <DrawerContent {...props} />}
           >
             <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
             <Drawer.Screen name="SupportScreen" component={SupportScreen} />
             <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
             <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
-          </Drawer.Navigator>
+          </Drawer.Navigator> */}
 
           {/* {loginState.userToken !== null ? (
             <Drawer.Navigator
