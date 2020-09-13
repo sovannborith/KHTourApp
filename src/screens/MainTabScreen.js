@@ -4,10 +4,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import AnimatedTabBar, { TabsConfigsType } from "curved-bottom-navigation-bar";
 
-import IconAnt from "react-native-vector-icons/AntDesign";
+import AntDesign from "react-native-vector-icons/AntDesign";
 import Icon from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import Icon5 from "react-native-vector-icons/FontAwesome5";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 import { useTheme, Avatar } from "react-native-paper";
 import { View } from "react-native-animatable";
@@ -20,11 +20,7 @@ import ExploreScreen from "./ExploreScreen";
 import ProfileScreen from "./ProfileScreen";
 import SplashScreen from "./SplashScreen";
 import EditProfileScreen from "./EditProfileScreen";
-import {
-  PRIMARY_COLOR,
-  ICON_ACTIVE_COLOR,
-  PRIMARY_BG_COLOR,
-} from "../constants/constant";
+import { PRIMARY_COLOR } from "../constants/constant";
 
 const HomeStack = createStackNavigator();
 const NotificationStack = createStackNavigator();
@@ -35,22 +31,22 @@ const Tab = createBottomTabNavigator();
 const tabs = {
   Home: {
     icon: ({ progress }) => (
-      <IconAnt name={"home"} size={26} color={PRIMARY_COLOR} />
+      <AntDesign name={"home"} size={26} color={PRIMARY_COLOR} />
     ),
   },
   Notifications: {
     icon: ({ progress }) => (
-      <IconAnt name={"notification"} size={26} color={PRIMARY_COLOR} />
+      <AntDesign name={"notification"} size={26} color={PRIMARY_COLOR} />
     ),
   },
   Profile: {
     icon: ({ progress }) => (
-      <IconAnt name={"user"} size={26} color={PRIMARY_COLOR} />
+      <AntDesign name={"user"} size={26} color={PRIMARY_COLOR} />
     ),
   },
   Explore: {
     icon: ({ progress }) => (
-      <Icon5 name={"search-location"} size={26} color={PRIMARY_COLOR} />
+      <FontAwesome5 name={"search-location"} size={26} color={PRIMARY_COLOR} />
     ),
   },
 };
@@ -58,7 +54,13 @@ const tabs = {
 const MainTabScreen = () => (
   <Tab.Navigator
     tabBar={(props) => (
-      <AnimatedTabBar barColor={"#91005f"} tabs={tabs} {...props} />
+      <AnimatedTabBar
+        dotColor={"#f54ece"}
+        dotSize={50}
+        barColor={"#246b6b"}
+        tabs={tabs}
+        {...props}
+      />
     )}
   >
     {/* <Tab.Screen
@@ -110,7 +112,6 @@ const HomeStackScreen = ({ navigation }) => {
   return (
     <HomeStack.Navigator
       initialRouteName="Home"
-      headerMode="none"
       screenOptions={{
         headerStyle: {
           backgroundColor: colors.background,
@@ -128,7 +129,7 @@ const HomeStackScreen = ({ navigation }) => {
         name="Home"
         component={HomeScreen}
         options={{
-          title: "FoodFinder",
+          title: "Welcome to KH Tour",
 
           headerLeft: () => (
             <View style={{ marginLeft: 10 }}>
@@ -267,20 +268,13 @@ const ProfileStackScreen = ({ navigation }) => {
         name="EditProfile"
         options={{
           title: "Edit Profile",
+          headerBackTitle: null,
+          headerBackTitleVisible: false,
         }}
         component={EditProfileScreen}
       />
     </ProfileStack.Navigator>
   );
 };
-
-/* const mainStack = createStackNavigator();
-
-const MainStackScreen = () => {
-  <mainStack.Navigator initialRouteName="SplashScreen" headerMode="none">
-    <mainStack.Screen name="SplashScreen" component={SplashScreen} />
-    <mainStack.Screen name="MainTabBarS" component={MainTabBarScreen} />
-  </mainStack.Navigator>;
-}; */
 
 export default MainTabScreen;

@@ -1,12 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, { useEffect } from "react";
+import { StyleSheet } from "react-native";
 import {
   NavigationContainer,
   DefaultTheme as NavigationDefaultTheme,
@@ -20,19 +13,15 @@ import {
   DarkTheme as PaperDarkTheme,
 } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { DrawerContent } from "./src/screens/DrawerContent";
-import MainTabScreen from "./src/screens/MainTabScreen";
-
-import SupportScreen from "./src/screens/SupportScreen";
-import SettingsScreen from "./src/screens/SettingsScreen";
-import BookmarkScreen from "./src/screens/BookmarkScreen";
+import Animated from "react-native-reanimated";
 
 import { AuthContext } from "./src/components/context";
 import AsyncStorage from "@react-native-community/async-storage";
+import Drawer from "./src/navigation/Drawer";
 
-const Drawer = createDrawerNavigator();
+//const Drawer = createDrawerNavigator();
 
-const App = () => {
+export default App = () => {
   // const [isLoading, setIsLoading] = React.useState(true);
   // const [userToken, setUserToken] = React.useState(null);
 
@@ -160,18 +149,52 @@ const App = () => {
       <AuthContext.Provider value={authContext}>
         <SafeAreaProvider>
           <NavigationContainer theme={theme}>
-            <Drawer.Navigator
-              drawerContent={(props) => <DrawerContent {...props} />}
-            >
-              <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
-              <Drawer.Screen name="SupportScreen" component={SupportScreen} />
-              <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
-              <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
-            </Drawer.Navigator>
+            <Drawer />
           </NavigationContainer>
         </SafeAreaProvider>
       </AuthContext.Provider>
     </PaperProvider>
   );
 };
-export default App;
+
+const styles = StyleSheet.create({
+  stack: {
+    flex: 1,
+    shadowColor: "#FFF",
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    color: "#fff",
+    shadowOpacity: 0.44,
+    shadowRadius: 10.32,
+    elevation: 6,
+    // overflow: 'scroll',
+    // borderWidth: 1,
+  },
+  drawerStyles: {
+    flex: 1,
+    width: "65%",
+    backgroundColor: "transparent",
+    color: "#fff",
+  },
+  drawerItem: { alignItems: "flex-start", marginVertical: 0 },
+  drawerLabel: { color: "white", marginLeft: -16 },
+  avatar: {
+    borderRadius: 60,
+    marginBottom: 16,
+    borderColor: "white",
+    borderWidth: StyleSheet.hairlineWidth,
+  },
+  menuBar: {
+    width: 24,
+    height: 0,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: 20,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#e0e0e0",
+  },
+});

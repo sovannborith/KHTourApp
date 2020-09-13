@@ -24,19 +24,24 @@ export function DrawerContent(props) {
 
   return (
     <View style={{ flex: 1 }}>
-      <DrawerContentScrollView {...props}>
+      <DrawerContentScrollView
+        {...props}
+        scrollEnabled={true}
+        contentContainerStyle={{ flex: 1 }}
+      >
         <View style={styles.drawerContent}>
           <View style={styles.userInfoSection}>
             <View style={{ flexDirection: "row", marginTop: 15 }}>
               <Avatar.Image
-                source={{
-                  uri: "https://api.adorable.io/avatars/50/abott@adorable.png",
-                }}
-                size={50}
+                source={require("../assets/profile-avatar.png")}
+                size={100}
               />
-              <View style={{ marginLeft: 15, flexDirection: "column" }}>
-                <Title style={styles.title}>John Doe</Title>
-                <Caption style={styles.caption}>@j_doe</Caption>
+
+              <View style={{ marginLeft: 15, flex: 1 }}>
+                <Title style={styles.title}>Sovannborith Yun</Title>
+                <Caption style={styles.caption}>
+                  yun.sovannborith@gmail.com
+                </Caption>
               </View>
             </View>
 
