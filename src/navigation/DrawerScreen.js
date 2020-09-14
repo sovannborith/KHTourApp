@@ -1,136 +1,3 @@
-/* import React from "react";
-import { StyleSheet } from "react-native";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import Animated from "react-native-reanimated";
-import { Feather, AntDesign } from "@expo/vector-icons";
-import { LinearGradient } from "expo-linear-gradient";
-
-// screens
-import MainTabScreen from "../screens/MainTabScreen";
-import SupportScreen from "../screens/SupportScreen";
-import SettingsScreen from "../screens/SettingsScreen";
-import BookmarkScreen from "../screens/BookmarkScreen";
-
-import { DrawerContent } from "./DrawerContent";
-const Drawer = createDrawerNavigator();
-
-const Screens = ({ navigation, style }) => {
-  return (
-    <Animated.View style={StyleSheet.flatten([styles.stack, style])}>
-      <Drawer.Navigator
-        screenOptions={{
-          headerTransparent: false,
-          headerTitle: null,
-          headerLeft: () => (
-            <Animated.View style={styles.menuBar}>
-              <Feather
-                name="menu"
-                size={20}
-                color={"red"}
-                onPress={() => navigation.openDrawer()}
-              />
-            </Animated.View>
-          ),
-        }}
-      >
-        <Drawer.Screen name="Home">
-          {(props) => <MainTabScreen {...props} />}
-        </Drawer.Screen>
-        <Drawer.Screen name="Support">
-          {(props) => <SupportScreen {...props} />}
-        </Drawer.Screen>
-        <Drawer.Screen name="Setting">
-          {(props) => <SettingsScreen {...props} />}
-        </Drawer.Screen>
-        <Drawer.Screen name="Bookmark">
-          {(props) => <BookmarkScreen {...props} />}
-        </Drawer.Screen>
-      </Drawer.Navigator>
-    </Animated.View>
-  );
-};
-export default DrawerConmponent = () => {
-  const [progress, setProgress] = React.useState(new Animated.Value(0));
-  const scale = Animated.interpolate(progress, {
-    inputRange: [0, 1],
-    outputRange: [1, 0.6],
-  });
-  const borderRadius = Animated.interpolate(progress, {
-    inputRange: [0, 1],
-    outputRange: [0, 30],
-  });
-
-  const animatedStyle = { borderRadius, transform: [{ scale }] };
-
-  return (
-    <LinearGradient style={{ flex: 1 }} colors={["#e0e0e0", "#ffffff"]}>
-      <Drawer.Navigator
-        // hideStatusBar
-        drawerType="slide"
-        overlayColor="transparent"
-        drawerStyle={styles.drawerStyles}
-        contentContainerStyle={{ flex: 1 }}
-        drawerContentOptions={{
-          activeBackgroundColor: "transparent",
-          activeTintColor: "white",
-          inactiveTintColor: "white",
-        }}
-        sceneContainerStyle={{ backgroundColor: "transparent" }}
-        drawerContent={(props) => {
-          setProgress(props.progress);
-          return <DrawerContent {...props} />;
-        }}
-      >
-        <Drawer.Screen name="Screens">
-          {(props) => <Screens {...props} style={animatedStyle} />}
-        </Drawer.Screen>
-      </Drawer.Navigator>
-    </LinearGradient>
-  );
-};
-
-const styles = StyleSheet.create({
-  stack: {
-    flex: 1,
-    shadowColor: "#FFF",
-    shadowOffset: {
-      width: 0,
-      height: 8,
-    },
-    color: "#fff",
-    shadowOpacity: 0.44,
-    shadowRadius: 10.32,
-    elevation: 6,
-    // overflow: 'scroll',
-    // borderWidth: 1,
-  },
-  drawerStyles: {
-    flex: 1,
-    width: "65%",
-    backgroundColor: "transparent",
-    color: "#fff",
-  },
-  drawerItem: { alignItems: "flex-start", marginVertical: 0 },
-  drawerLabel: { color: "white", marginLeft: -16 },
-  avatar: {
-    borderRadius: 60,
-    marginBottom: 16,
-    borderColor: "white",
-    borderWidth: StyleSheet.hairlineWidth,
-  },
-  menuBar: {
-    width: 24,
-    height: 0,
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginLeft: 20,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "#e0e0e0",
-  },
-}); */
-
 import React from "react";
 import { Image, StyleSheet } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -216,33 +83,27 @@ const DrawerContent = (props) => {
             contact@react-ui-kit.com
           </Text>
         </Block>
+
         <Block>
           <DrawerItem
-            label="Home"
+            label="Dashboard"
             labelStyle={styles.drawerLabel}
             style={styles.drawerItem}
             onPress={() => props.navigation.navigate("Home")}
             icon={() => <AntDesign name="dashboard" color="white" size={16} />}
           />
           <DrawerItem
-            label="Support"
+            label="Messages"
             labelStyle={{ color: "white", marginLeft: -16 }}
             style={{ alignItems: "flex-start", marginVertical: 0 }}
-            onPress={() => props.navigation.navigate("Support")}
+            onPress={() => props.navigation.navigate("Messages")}
             icon={() => <AntDesign name="message1" color="white" size={16} />}
           />
           <DrawerItem
             label="Contact us"
             labelStyle={{ color: "white", marginLeft: -16 }}
             style={{ alignItems: "flex-start", marginVertical: 0 }}
-            onPress={() => props.navigation.navigate("Setting")}
-            icon={() => <AntDesign name="phone" color="white" size={16} />}
-          />
-          <DrawerItem
-            label="Bookmark"
-            labelStyle={{ color: "white", marginLeft: -16 }}
-            style={{ alignItems: "flex-start", marginVertical: 0 }}
-            onPress={() => props.navigation.navigate("Bookmark")}
+            onPress={() => props.navigation.navigate("Contact")}
             icon={() => <AntDesign name="phone" color="white" size={16} />}
           />
         </Block>

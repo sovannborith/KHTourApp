@@ -1,3 +1,5 @@
+/* eslint-disable react-native/sort-styles */
+/* eslint-disable import/order */
 import React from "react";
 import { Image, StyleSheet } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -12,10 +14,9 @@ import { Block, Button, Text } from "expo-ui-kit";
 import { LinearGradient } from "expo-linear-gradient";
 
 // screens
-import MainTabScreen from "../screens/MainTabScreen";
-import SupportScreen from "../screens/SupportScreen";
-import SettingsScreen from "../screens/SettingsScreen";
-import BookmarkScreen from "../screens/BookmarkScreen";
+import Dashboard from "../screens/Dashboard";
+import Messages from "../screens/Messages";
+import Contact from "../screens/Contact";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -24,6 +25,7 @@ const Screens = ({ navigation, style }) => {
   return (
     <Animated.View style={StyleSheet.flatten([styles.stack, style])}>
       <Stack.Navigator
+        initialRouteName="Home"
         screenOptions={{
           headerTransparent: true,
           headerTitle: null,
@@ -40,16 +42,13 @@ const Screens = ({ navigation, style }) => {
         }}
       >
         <Stack.Screen name="Home">
-          {(props) => <MainTabScreen {...props} />}
+          {(props) => <Dashboard {...props} />}
         </Stack.Screen>
-        <Stack.Screen name="Support">
-          {(props) => <SupportScreen {...props} />}
+        <Stack.Screen name="Messages">
+          {(props) => <Messages {...props} />}
         </Stack.Screen>
-        <Stack.Screen name="Setting">
-          {(props) => <SettingsScreen {...props} />}
-        </Stack.Screen>
-        <Stack.Screen name="Bookmark">
-          {(props) => <BookmarkScreen {...props} />}
+        <Stack.Screen name="Contact">
+          {(props) => <Contact {...props} />}
         </Stack.Screen>
       </Stack.Navigator>
     </Animated.View>
@@ -120,7 +119,7 @@ const DrawerContent = (props) => {
   );
 };
 
-export default Drawer = () => {
+export default () => {
   const [progress, setProgress] = React.useState(new Animated.Value(0));
   const scale = Animated.interpolate(progress, {
     inputRange: [0, 1],
@@ -171,8 +170,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.44,
     shadowRadius: 10.32,
     elevation: 5,
-    // overflow: 'scroll',
-    // borderWidth: 1,
   },
   drawerStyles: { flex: 1, width: "50%", backgroundColor: "transparent" },
   drawerItem: { alignItems: "flex-start", marginVertical: 0 },

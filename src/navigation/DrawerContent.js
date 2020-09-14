@@ -14,7 +14,6 @@ import {
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-
 import { AuthContext } from "../components/context";
 
 export function DrawerContent(props) {
@@ -24,24 +23,19 @@ export function DrawerContent(props) {
 
   return (
     <View style={{ flex: 1 }}>
-      <DrawerContentScrollView
-        {...props}
-        scrollEnabled={true}
-        contentContainerStyle={{ flex: 1 }}
-      >
+      <DrawerContentScrollView {...props}>
         <View style={styles.drawerContent}>
           <View style={styles.userInfoSection}>
             <View style={{ flexDirection: "row", marginTop: 15 }}>
               <Avatar.Image
-                source={require("../assets/profile-avatar.png")}
-                size={100}
+                source={{
+                  uri: "https://api.adorable.io/avatars/50/abott@adorable.png",
+                }}
+                size={50}
               />
-
-              <View style={{ marginLeft: 15, flex: 1 }}>
-                <Title style={styles.title}>Sovannborith Yun</Title>
-                <Caption style={styles.caption}>
-                  yun.sovannborith@gmail.com
-                </Caption>
+              <View style={{ marginLeft: 15, flexDirection: "column" }}>
+                <Title style={styles.title}>John Doe</Title>
+                <Caption style={styles.caption}>@j_doe</Caption>
               </View>
             </View>
 
@@ -89,7 +83,15 @@ export function DrawerContent(props) {
                 props.navigation.navigate("BookmarkScreen");
               }}
             />
-
+            <DrawerItem
+              icon={({ color, size }) => (
+                <Icon name="settings-outline" color={color} size={size} />
+              )}
+              label="Settings"
+              onPress={() => {
+                props.navigation.navigate("SettingScreen");
+              }}
+            />
             <DrawerItem
               icon={({ color, size }) => (
                 <Icon name="account-check-outline" color={color} size={size} />
@@ -116,16 +118,69 @@ export function DrawerContent(props) {
           </Drawer.Section>
         </View>
       </DrawerContentScrollView>
+      {/* <DrawerContentScrollView
+        {...props}
+        scrollEnabled={false}
+        contentContainerStyle={{ flex: 1 }}
+      >
+        <Block>
+          <Block flex={0.4} margin={20} bottom>
+            <Image
+              source={{
+                uri:
+                  "https://react-ui-kit.com/assets/img/react-ui-kit-logo-green.png",
+                height: 60,
+                width: 60,
+                scale: 0.5,
+              }}
+              resizeMode="center"
+              style={styles.avatar}
+            />
+            <Text white title>
+              React UI Kit
+            </Text>
+            <Text white size={9}>
+              contact@react-ui-kit.com
+            </Text>
+          </Block>
+
+          <Block>
+            <DrawerItem
+              label="Dashboard"
+              labelStyle={styles.drawerLabel}
+              style={styles.drawerItem}
+              onPress={() => props.navigation.navigate("Home")}
+              icon={() => (
+                <AntDesign name="dashboard" color="white" size={16} />
+              )}
+            />
+            <DrawerItem
+              label="Messages"
+              labelStyle={{ color: "white", marginLeft: -16 }}
+              style={{ alignItems: "flex-start", marginVertical: 0 }}
+              onPress={() => props.navigation.navigate("Messages")}
+              icon={() => <AntDesign name="message1" color="white" size={16} />}
+            />
+            <DrawerItem
+              label="Contact us"
+              labelStyle={{ color: "white", marginLeft: -16 }}
+              style={{ alignItems: "flex-start", marginVertical: 0 }}
+              onPress={() => props.navigation.navigate("Contact")}
+              icon={() => <AntDesign name="phone" color="white" size={16} />}
+            />
+          </Block>
+        </Block>
+
+        <Block flex={false}>
+          <DrawerItem
+            label="Logout"
+            labelStyle={{ color: "white" }}
+            icon={() => <AntDesign name="logout" color="white" size={16} />}
+            onPress={() => alert("Are your sure to logout?")}
+          />
+        </Block>
+      </DrawerContentScrollView> */}
       <Drawer.Section style={styles.bottomDrawerSection}>
-        <DrawerItem
-          icon={({ color, size }) => (
-            <Icon name="settings-outline" color={color} size={size} />
-          )}
-          label="Settings"
-          onPress={() => {
-            props.navigation.navigate("SettingsScreen");
-          }}
-        />
         <DrawerItem
           icon={({ color, size }) => (
             <Icon name="exit-to-app" color={color} size={size} />
