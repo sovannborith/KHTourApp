@@ -25,7 +25,7 @@ const HomeScreen = ({ navigation }) => {
   const theme = useTheme();
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, paddingTop: 40 }}>
       <ScrollView style={styles.container}>
         <StatusBar barStyle={theme.dark ? "light-content" : "dark-content"} />
         <View style={styles.sliderContainer}>

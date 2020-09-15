@@ -11,7 +11,7 @@ import {
 
 import { SwipeListView } from "react-native-swipe-list-view";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-
+import { SafeAreaView } from "react-native-safe-area-context";
 import Notifications from "../models/Notifications";
 
 const NotificationScreen = ({ navigation }) => {
@@ -212,27 +212,29 @@ const NotificationScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle="dark-content" />
-      {/* <StatusBar backgroundColor="#FF6347" barStyle="light-content"/> */}
-      <SwipeListView
-        data={listData}
-        renderItem={renderItem}
-        renderHiddenItem={renderHiddenItem}
-        leftOpenValue={75}
-        rightOpenValue={-150}
-        disableRightSwipe
-        onRowDidOpen={onRowDidOpen}
-        leftActivationValue={100}
-        rightActivationValue={-200}
-        leftActionValue={0}
-        rightActionValue={-500}
-        onLeftAction={onLeftAction}
-        onRightAction={onRightAction}
-        onLeftActionStatusChange={onLeftActionStatusChange}
-        onRightActionStatusChange={onRightActionStatusChange}
-      />
-    </View>
+    <SafeAreaView style={{ flex: 1, paddingTop: 40 }}>
+      <View style={styles.container}>
+        <StatusBar barStyle="dark-content" />
+        {/* <StatusBar backgroundColor="#FF6347" barStyle="light-content"/> */}
+        <SwipeListView
+          data={listData}
+          renderItem={renderItem}
+          renderHiddenItem={renderHiddenItem}
+          leftOpenValue={75}
+          rightOpenValue={-150}
+          disableRightSwipe
+          onRowDidOpen={onRowDidOpen}
+          leftActivationValue={100}
+          rightActivationValue={-200}
+          leftActionValue={0}
+          rightActionValue={-500}
+          onLeftAction={onLeftAction}
+          onRightAction={onRightAction}
+          onLeftActionStatusChange={onLeftActionStatusChange}
+          onRightActionStatusChange={onRightActionStatusChange}
+        />
+      </View>
+    </SafeAreaView>
   );
 };
 

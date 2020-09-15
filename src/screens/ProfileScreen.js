@@ -1,5 +1,5 @@
 import React from "react";
-import { View, SafeAreaView, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import {
   Avatar,
   Title,
@@ -7,7 +7,7 @@ import {
   Text,
   TouchableRipple,
 } from "react-native-paper";
-
+import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 //import Share from "react-native-share";
@@ -118,6 +118,7 @@ export default ProfileScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 30,
   },
   userInfoSection: {
     paddingHorizontal: 30,

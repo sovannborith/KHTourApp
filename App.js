@@ -16,7 +16,7 @@ import {
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
 import Animated from "react-native-reanimated";
-import { Feather, AntDesign } from "@expo/vector-icons";
+import Icon from "react-native-vector-icons/Ionicons";
 
 import {
   Provider as PaperProvider,
@@ -47,13 +47,11 @@ const StackScreen = ({ navigation, style }) => {
           headerTransparent: true,
           headerTitle: true,
           headerLeft: () => (
-            <View style={{ marginLeft: 10 }}>
-              <Feather.Button
-                name="menu"
-                size={18}
-                backgroundColor="transparent"
-                color="black"
-                style={{ paddingHorizontal: 10 }}
+            <View style={styles.menuOuter}>
+              <Icon
+                name="ios-menu"
+                size={25}
+                color={"black"}
                 onPress={() => navigation.openDrawer()}
               />
             </View>
@@ -277,5 +275,19 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderColor: "white",
     borderWidth: StyleSheet.hairlineWidth,
+  },
+  menuOuter: {
+    top: -5,
+    marginLeft: 20,
+    backgroundColor: "#ffffff",
+    borderWidth: 1,
+    borderColor: "#92a3b0",
+    paddingLeft: 6,
+    paddingRight: 6,
+    paddingTop: 2,
+    borderRadius: 22,
+    shadowColor: "grey",
+    shadowRadius: 22,
+    shadowOpacity: 0.9,
   },
 });
