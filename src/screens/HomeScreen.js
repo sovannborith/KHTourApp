@@ -37,21 +37,35 @@ const HomeScreen = ({ navigation }) => {
           >
             <View style={styles.slide}>
               <Image
-                source={require("../assets/banners/food-banner1.jpg")}
+                source={require("../assets/banners/tour_banner_01.jpg")}
                 resizeMode="cover"
                 style={styles.sliderImage}
               />
             </View>
             <View style={styles.slide}>
               <Image
-                source={require("../assets/banners/food-banner2.jpg")}
+                source={require("../assets/banners/tour_banner_02.jpg")}
                 resizeMode="cover"
                 style={styles.sliderImage}
               />
             </View>
             <View style={styles.slide}>
               <Image
-                source={require("../assets/banners/food-banner3.jpg")}
+                source={require("../assets/banners/tour_banner_03.jpg")}
+                resizeMode="cover"
+                style={styles.sliderImage}
+              />
+            </View>
+            <View style={styles.slide}>
+              <Image
+                source={require("../assets/banners/tour_banner_04.jpg")}
+                resizeMode="cover"
+                style={styles.sliderImage}
+              />
+            </View>
+            <View style={styles.slide}>
+              <Image
+                source={require("../assets/banners/tour_banner_05.jpg")}
                 resizeMode="cover"
                 style={styles.sliderImage}
               />

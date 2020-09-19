@@ -7,7 +7,7 @@
  */
 
 import React, { useEffect } from "react";
-import { View, ActivityIndicator, StyleSheet, Button } from "react-native";
+import { View, ActivityIndicator, StyleSheet } from "react-native";
 import {
   NavigationContainer,
   DefaultTheme as NavigationDefaultTheme,
@@ -16,7 +16,6 @@ import {
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
 import Animated from "react-native-reanimated";
-import Icon from "react-native-vector-icons/Ionicons";
 
 import {
   Provider as PaperProvider,
@@ -35,7 +34,7 @@ import BookmarkScreen from "./src/screens/BookmarkScreen";
 import { AuthContext } from "./src/components/context";
 
 import AsyncStorage from "@react-native-community/async-storage";
-
+import Icon from "react-native-vector-icons/Ionicons";
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
@@ -224,7 +223,7 @@ const App = () => {
     <PaperProvider theme={theme}>
       <AuthContext.Provider value={authContext}>
         <NavigationContainer theme={theme}>
-          <LinearGradient style={{ flex: 1 }} colors={["#beadff", "#beadff"]}>
+          <LinearGradient style={{ flex: 1 }} colors={["#b5ffbe", "#b5ffbe"]}>
             <Drawer.Navigator
               drawerType="slide"
               overlayColor="transparent"
@@ -261,11 +260,10 @@ const styles = StyleSheet.create({
       width: 0,
       height: 8,
     },
-    shadowOpacity: 0.44,
-    shadowRadius: 10.32,
+    shadowOpacity: 1,
+    shadowRadius: 10,
     elevation: 5,
-    // overflow: 'scroll',
-    // borderWidth: 1,
+    overflow: "hidden",
   },
   drawerStyles: { flex: 1, width: "70%", backgroundColor: "transparent" },
   drawerItem: { alignItems: "flex-start", marginVertical: 0 },
@@ -287,7 +285,9 @@ const styles = StyleSheet.create({
     paddingTop: 2,
     borderRadius: 22,
     shadowColor: "grey",
-    shadowRadius: 22,
-    shadowOpacity: 0.9,
+    shadowRadius: 3,
+    shadowOpacity: 0.8,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 5,
   },
 });

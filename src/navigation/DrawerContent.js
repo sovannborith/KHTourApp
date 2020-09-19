@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
 import {
   useTheme,
   Avatar,
@@ -21,38 +21,36 @@ export function DrawerContent(props) {
 
   const { signOut, toggleTheme } = React.useContext(AuthContext);
 
+  const avatarSize = 100;
+  //const { width, height } = Dimensions.get("window");
+
+  //console.log((width - avatarSize) / 2);
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
         <SafeAreaView>
           <View style={styles.drawerContent}>
             <View style={styles.userInfoSection}>
-              <View style={{ flexDirection: "row", marginTop: 15 }}>
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: "colum",
+                  marginTop: 15,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  paddingLeft: 120,
+                }}
+              >
                 <Avatar.Image
                   source={{
                     uri:
-                      "https://api.adorable.io/avatars/50/abott@adorable.png",
+                      "https://firebasestorage.googleapis.com/v0/b/kh-tour-app.appspot.com/o/app_dyn_resource%2Fprofile-avatar.png?alt=media&token=50464b63-c0d3-4b47-ae65-18a814dc52c1",
                   }}
-                  size={50}
+                  size={avatarSize}
                 />
                 <View style={{ marginLeft: 15, flexDirection: "column" }}>
-                  <Title style={styles.title}>John Doe</Title>
-                  <Caption style={styles.caption}>@j_doe</Caption>
-                </View>
-              </View>
-
-              <View style={styles.row}>
-                <View style={styles.section}>
-                  <Paragraph style={[styles.paragraph, styles.caption]}>
-                    80
-                  </Paragraph>
-                  <Caption style={styles.caption}>Following</Caption>
-                </View>
-                <View style={styles.section}>
-                  <Paragraph style={[styles.paragraph, styles.caption]}>
-                    100
-                  </Paragraph>
-                  <Caption style={styles.caption}>Followers</Caption>
+                  <Title style={styles.title}>Hi Anonymous</Title>
+                  <Caption style={styles.caption}>@Anonymous</Caption>
                 </View>
               </View>
             </View>
@@ -146,7 +144,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   userInfoSection: {
-    paddingLeft: 20,
+    marginTop: -50,
   },
   title: {
     fontSize: 16,

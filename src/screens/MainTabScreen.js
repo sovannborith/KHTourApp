@@ -18,7 +18,7 @@ import HomeScreen from "./HomeScreen";
 import NotificationScreen from "./NotificationScreen";
 import ExploreScreen from "./ExploreScreen";
 import ProfileScreen from "./ProfileScreen";
-import SplashScreen from "./SplashScreen";
+//import SplashScreen from "./SplashScreen";
 import EditProfileScreen from "./EditProfileScreen";
 import { PRIMARY_COLOR } from "../constants/constant";
 
