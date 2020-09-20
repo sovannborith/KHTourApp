@@ -2,14 +2,14 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
-export default DrawerHeaderLeft = ({ navigation }) => {
+export default DrawerHeaderLeft = ({ onPress }) => {
   return (
     <View style={styles.menuOuter}>
       <Icon
         name="ios-menu"
         size={25}
         color={"black"}
-        onPress={() => navigation.openDrawer()}
+        onPress={onPress}
       />
     </View>
   );
