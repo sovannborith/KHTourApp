@@ -3,7 +3,7 @@ import React from "react";
 import firebase from "@react-native-firebase/app";
 import Auth from "@react-native-firebase/auth";
 
-import App from "./App";
+import App from "../../App";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -27,4 +27,4 @@ function FirebaseConfig() {
   return <App />;
 }
 
-export default Setup;
+export default FirebaseConfig;

@@ -63,15 +63,7 @@ const MainTabScreen = () => (
       />
     )}
   >
-    {/* <Tab.Screen
-      name="SplashScreen"
-      component={SplashScreen}
-      options={{
-        tabBarLabel: "",
-        tabBarColor: "#FF6347",
-        tabBarVisible: false,
-      }}
-    /> */}
+
     <Tab.Screen
       name="Home"
       component={HomeStackScreen}
@@ -149,7 +141,7 @@ const HomeStackScreen = ({ navigation }) => {
                 size={25}
                 color={colors.text}
                 backgroundColor={colors.background}
-                onPress={() => {}}
+                onPress={() => { }}
               />
               <TouchableOpacity
                 style={{ paddingHorizontal: 10, marginTop: 5 }}

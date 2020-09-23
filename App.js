@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, { useEffect } from "react";
 import { View, ActivityIndicator, StyleSheet } from "react-native";
 import {
@@ -35,6 +27,7 @@ import { AuthContext } from "./src/components/context";
 
 import AsyncStorage from "@react-native-community/async-storage";
 import Icon from "react-native-vector-icons/Ionicons";
+//import DrawerHeaderLeft from "./src/components/DrawerHeaderLeft";
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
@@ -46,6 +39,7 @@ const StackScreen = ({ navigation, style }) => {
           headerTransparent: true,
           headerTitle: true,
           headerLeft: () => (
+            /* <DrawerHeaderLeft onPress={navigation.openDrawer()} /> */
             <View style={styles.menuOuter}>
               <Icon
                 name="ios-menu"
@@ -252,6 +246,7 @@ const App = () => {
 };
 
 export default App;
+
 const styles = StyleSheet.create({
   stack: {
     flex: 1,
@@ -274,6 +269,7 @@ const styles = StyleSheet.create({
     borderColor: "white",
     borderWidth: StyleSheet.hairlineWidth,
   },
+
   menuOuter: {
     top: -5,
     marginLeft: 20,

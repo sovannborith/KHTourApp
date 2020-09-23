@@ -14,6 +14,7 @@ import {
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { AntDesign } from "@expo/vector-icons";
 import { AuthContext } from "../components/context";
 
 export function DrawerContent(props) {
@@ -22,9 +23,6 @@ export function DrawerContent(props) {
   const { signOut, toggleTheme } = React.useContext(AuthContext);
 
   const avatarSize = 100;
-  //const { width, height } = Dimensions.get("window");
-
-  //console.log((width - avatarSize) / 2);
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
@@ -127,11 +125,11 @@ export function DrawerContent(props) {
       <Drawer.Section style={styles.bottomDrawerSection}>
         <DrawerItem
           icon={({ color, size }) => (
-            <Icon name="exit-to-app" color={color} size={size} />
+            <AntDesign name="login" size={size} color={color} />
           )}
           label="Sign Out"
           onPress={() => {
-            signOut();
+            props.navigation.navigate("SigninScreen");
           }}
         />
       </Drawer.Section>

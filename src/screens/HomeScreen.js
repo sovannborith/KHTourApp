@@ -16,7 +16,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import Fontisto from "react-native-vector-icons/Fontisto";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import StarRating from "../components/StarRating";
-
+import { firebase, Auth } from "../../src/server/FirebaseConfig";
 //import CardListScreen from "../screens/CardListScreen";
 
 const HomeScreen = ({ navigation }) => {
@@ -24,6 +24,10 @@ const HomeScreen = ({ navigation }) => {
 
   const theme = useTheme();
 
+  firebase.auth().signInWithEmailAndPassword();
+  var user = firebase.auth().currentUser;
+
+  console.log(user);
   return (
     <SafeAreaView style={{ flex: 1, paddingTop: 40 }}>
       <ScrollView style={styles.container}>
