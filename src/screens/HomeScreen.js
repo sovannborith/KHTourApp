@@ -24,10 +24,10 @@ const HomeScreen = ({ navigation }) => {
 
   const theme = useTheme();
 
-  firebase.auth().signInWithEmailAndPassword();
-  var user = firebase.auth().currentUser;
+  //firebase.auth().signInWithEmailAndPassword();
+  //var user = firebase.auth().currentUser;
 
-  console.log(user);
+  //console.log(user);
   return (
     <SafeAreaView style={{ flex: 1, paddingTop: 40 }}>
       <ScrollView style={styles.container}>
