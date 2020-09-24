@@ -127,9 +127,9 @@ export function DrawerContent(props) {
           icon={({ color, size }) => (
             <AntDesign name="login" size={size} color={color} />
           )}
-          label="Sign Out"
+          label="Sign In"
           onPress={() => {
-            props.navigation.navigate("SigninScreen");
+            props.navigation.navigate("SignInScreen");
           }}
         />
       </Drawer.Section>

@@ -1,12 +1,10 @@
 import React from "react";
 
-import firebase from "@react-native-firebase/app";
-import Auth from "@react-native-firebase/auth";
+import * as firebase from "firebase";
+import "@firebase/auth";
+import "@firebase/firestore";
 
-import App from "../../App";
-
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
+const config = {
   apiKey: "AIzaSyBCbQkpMH5lagAZ87ZHxpvv0j1nWXMJL1U",
   authDomain: "kh-tour-app.firebaseapp.com",
   databaseURL: "https://kh-tour-app.firebaseio.com",
@@ -18,13 +16,7 @@ const firebaseConfig = {
 };
 
 if (!firebase.app.length) {
-  firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(config);
 }
 
-export { firebase, Auth };
-
-function FirebaseConfig() {
-  return <App />;
-}
-
-export default FirebaseConfig;
+export default firebase;

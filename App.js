@@ -22,51 +22,13 @@ import MainTabScreen from "./src/screens/MainTabScreen";
 import SupportScreen from "./src/screens/SupportScreen";
 import SettingsScreen from "./src/screens/SettingsScreen";
 import BookmarkScreen from "./src/screens/BookmarkScreen";
-
+import RootStackScreen from "./src/screens/authentication/RootStackScreen";
 import { AuthContext } from "./src/components/context";
 
 import AsyncStorage from "@react-native-community/async-storage";
 import Icon from "react-native-vector-icons/Ionicons";
-//import DrawerHeaderLeft from "./src/components/DrawerHeaderLeft";
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
-
-const StackScreen = ({ navigation, style }) => {
-  return (
-    <Animated.View style={StyleSheet.flatten([styles.stack, style])}>
-      <Stack.Navigator
-        screenOptions={{
-          headerTransparent: true,
-          headerTitle: true,
-          headerLeft: () => (
-            /* <DrawerHeaderLeft onPress={navigation.openDrawer()} /> */
-            <View style={styles.menuOuter}>
-              <Icon
-                name="ios-menu"
-                size={25}
-                color={"black"}
-                onPress={() => navigation.openDrawer()}
-              />
-            </View>
-          ),
-        }}
-      >
-        <Stack.Screen name="HomeDrawer">
-          {(props) => <MainTabScreen {...props} />}
-        </Stack.Screen>
-        <Stack.Screen name="SupportScreen">
-          {(props) => <SupportScreen {...props} />}
-        </Stack.Screen>
-        <Stack.Screen name="SettingsScreen">
-          {(props) => <SettingsScreen {...props} />}
-        </Stack.Screen>
-        <Stack.Screen name="BookmarkScreen">
-          {(props) => <BookmarkScreen {...props} />}
-        </Stack.Screen>
-      </Stack.Navigator>
-    </Animated.View>
-  );
-};
 
 const App = () => {
   // const [isLoading, setIsLoading] = React.useState(true);
@@ -212,6 +174,42 @@ const App = () => {
       </View>
     );
   }
+
+  const StackScreen = ({ navigation, style }) => {
+    return (
+      <Animated.View style={StyleSheet.flatten([styles.stack, style])}>
+        <Stack.Navigator
+          screenOptions={{
+            headerTransparent: true,
+            headerTitle: true,
+            headerLeft: () => (
+              <View style={styles.menuOuter}>
+                <Icon
+                  name="ios-menu"
+                  size={25}
+                  color={"black"}
+                  onPress={() => navigation.openDrawer()}
+                />
+              </View>
+            ),
+          }}
+        >
+          <Stack.Screen name="HomeDrawer">
+            {(props) => <MainTabScreen {...props} />}
+          </Stack.Screen>
+          <Stack.Screen name="SupportScreen">
+            {(props) => <SupportScreen {...props} />}
+          </Stack.Screen>
+          <Stack.Screen name="SettingsScreen">
+            {(props) => <SettingsScreen {...props} />}
+          </Stack.Screen>
+          <Stack.Screen name="BookmarkScreen">
+            {(props) => <BookmarkScreen {...props} />}
+          </Stack.Screen>
+        </Stack.Navigator>
+      </Animated.View>
+    );
+  };
 
   return (
     <PaperProvider theme={theme}>
