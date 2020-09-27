@@ -11,8 +11,7 @@ import {
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { LinearGradient } from "expo-linear-gradient";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import Feather from "react-native-vector-icons/Feather";
+import { FontAwesome, Feather } from "@expo/vector-icons";
 
 import { useTheme } from "react-native-paper";
 
@@ -238,7 +237,7 @@ const SignInScreen = ({ navigation }) => {
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => navigation.navigate("SignUpScreen")}
+            onPress={() => navigation.navigate("SignUp")}
             style={[
               styles.signIn,
               {
@@ -259,12 +258,34 @@ const SignInScreen = ({ navigation }) => {
               Sign Up
             </Text>
           </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => navigation.navigate("ForgetPassword")}
+            style={[
+              styles.signIn,
+              {
+                borderColor: "#FF6347",
+                borderWidth: 1,
+                marginTop: 15,
+              },
+            ]}
+          >
+            <Text
+              style={[
+                styles.textSign,
+                {
+                  color: "#FF6347",
+                },
+              ]}
+            >
+              Forget Password
+            </Text>
+          </TouchableOpacity>
         </View>
       </Animatable.View>
     </View>
   );
 };
-
 export default SignInScreen;
 
 const styles = StyleSheet.create({

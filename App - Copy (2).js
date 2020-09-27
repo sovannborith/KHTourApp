@@ -40,7 +40,6 @@ const App = () => {
   // const [userToken, setUserToken] = React.useState(null);
 
   const [progress, setProgress] = React.useState(new Animated.Value(0));
-
   const scale = Animated.interpolate(progress, {
     inputRange: [0, 1],
     outputRange: [1, 0.8],
@@ -200,11 +199,10 @@ const App = () => {
           }}
         >
           <AuthStack.Screen
-            name="SignUp"
+            name="SignIn"
+            component={SignInScreen}
             options={{
-              title: "Sign Up",
-              headerBackTitle: null,
-              headerBackTitleVisible: false,
+              title: "",
               headerLeft: () => (
                 <View style={{ marginLeft: 10 }}>
                   <Icon.Button
@@ -217,18 +215,16 @@ const App = () => {
                 </View>
               ),
             }}
-            component={SignUpScreen}
           />
           <AuthStack.Screen
-            name="SignIn"
-            component={SignInScreen}
+            name="SignUp"
             options={{
-              title: "Sign In",
+              title: "Sign Up",
               headerBackTitle: null,
               headerBackTitleVisible: false,
             }}
+            component={SignUpScreen}
           />
-
           <AuthStack.Screen
             name="ForgetPassword"
             options={{
@@ -283,7 +279,7 @@ const App = () => {
     <PaperProvider theme={theme}>
       <AuthContext.Provider value={authContext}>
         <NavigationContainer theme={theme}>
-          <LinearGradient style={{ flex: 1 }} colors={["#f5f5f5", "#fff0f0"]}>
+          <LinearGradient style={{ flex: 1 }} colors={["#b5ffbe", "#b5ffbe"]}>
             <Drawer.Navigator
               drawerType="slide"
               overlayColor="transparent"
@@ -301,13 +297,11 @@ const App = () => {
               }}
             >
               <Drawer.Screen name="HomeDrawer">
-                {(props) => <StackScreen {...props} style={animatedStyle} />}
+                {(props) => <StackScreen {...props} />}
               </Drawer.Screen>
 
               <Drawer.Screen name="AuthScreen">
-                {(props) => (
-                  <AuthenticationStackScreen {...props} style={animatedStyle} />
-                )}
+                {(props) => <AuthenticationStackScreen {...props} />}
               </Drawer.Screen>
             </Drawer.Navigator>
           </LinearGradient>

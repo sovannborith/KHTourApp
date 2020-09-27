@@ -7,11 +7,11 @@ import SignUpScreen from "./SignUpScreen";
 
 const RootStack = createStackNavigator();
 
-const RootStackScreen = ({ navigation }) => (
+const AuthStackScreen = ({ navigation }) => (
   <RootStack.Navigator headerMode="none" initialRouteName="SignIn">
     <RootStack.Screen name="SignIn" component={SignInScreen} />
     <RootStack.Screen name="SignUp" component={SignUpScreen} />
   </RootStack.Navigator>
 );
 
-export default RootStackScreen;
+export default AuthStackScreen;

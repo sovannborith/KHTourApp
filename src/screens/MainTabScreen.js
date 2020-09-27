@@ -4,10 +4,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import AnimatedTabBar, { TabsConfigsType } from "curved-bottom-navigation-bar";
 
-import AntDesign from "react-native-vector-icons/AntDesign";
 import Icon from "react-native-vector-icons/Ionicons";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import {
+  AntDesign,
+  FontAwesome5,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 
 import { useTheme, Avatar } from "react-native-paper";
 import { View } from "react-native-animatable";
@@ -16,9 +18,7 @@ import CardListScreen from "./CardListScreen";
 import CardItemDetails from "./CardItemDetails";
 import HomeScreen from "./HomeScreen";
 import NotificationScreen from "./NotificationScreen";
-import ExploreScreen from "./ExploreScreen";
 import ProfileScreen from "./ProfileScreen";
-//import SplashScreen from "./SplashScreen";
 import EditProfileScreen from "./EditProfileScreen";
 import { PRIMARY_COLOR } from "../constants/constant";
 
@@ -31,22 +31,22 @@ const Tab = createBottomTabNavigator();
 const tabs = {
   Home: {
     icon: ({ progress }) => (
-      <AntDesign name={"home"} size={26} color={PRIMARY_COLOR} />
+      <AntDesign name={"home"} size={22} color={PRIMARY_COLOR} />
     ),
   },
-  Notifications: {
+  Resorts: {
     icon: ({ progress }) => (
-      <AntDesign name={"notification"} size={26} color={PRIMARY_COLOR} />
+      <FontAwesome5 name={"plane"} size={22} color={PRIMARY_COLOR} />
     ),
   },
-  Profile: {
+  Hotels: {
     icon: ({ progress }) => (
-      <AntDesign name={"user"} size={26} color={PRIMARY_COLOR} />
+      <FontAwesome5 name={"hotel"} size={22} color={PRIMARY_COLOR} />
     ),
   },
-  Explore: {
+  Emergency: {
     icon: ({ progress }) => (
-      <FontAwesome5 name={"search-location"} size={26} color={PRIMARY_COLOR} />
+      <AntDesign name={"contacts"} size={22} color={PRIMARY_COLOR} />
     ),
   },
 };
@@ -56,14 +56,13 @@ const MainTabScreen = () => (
     tabBar={(props) => (
       <AnimatedTabBar
         dotColor={"#f54ece"}
-        dotSize={50}
+        dotSize={40}
         barColor={"#246b6b"}
         tabs={tabs}
         {...props}
       />
     )}
   >
-
     <Tab.Screen
       name="Home"
       component={HomeStackScreen}
@@ -73,27 +72,27 @@ const MainTabScreen = () => (
       }}
     />
     <Tab.Screen
-      name="Notifications"
+      name="Resorts"
       component={NotificationStackScreen}
       options={{
-        tabBarLabel: "Updates",
+        tabBarLabel: "Resorts",
         tabBarColor: "#1f65ff",
       }}
     />
     <Tab.Screen
-      name="Profile"
+      name="Hotels"
       component={ProfileStackScreen}
       options={{
-        tabBarLabel: "Profile",
+        tabBarLabel: "Hotels",
         tabBarColor: "#694fad",
       }}
     />
     <Tab.Screen
-      name="Explore"
-      component={ExploreScreen}
+      name="Emergency"
+      component={ProfileStackScreen}
       options={{
-        tabBarLabel: "Explore",
-        tabBarColor: "#d02860",
+        tabBarLabel: "Emergency",
+        tabBarColor: "#694fad",
       }}
     />
   </Tab.Navigator>
@@ -116,7 +115,6 @@ const HomeStackScreen = ({ navigation }) => {
         },
       }}
     >
-      {/* <HomeStack.Screen name="Splash" component={SplashScreen} /> */}
       <HomeStack.Screen
         name="Home"
         component={HomeScreen}
@@ -141,7 +139,7 @@ const HomeStackScreen = ({ navigation }) => {
                 size={25}
                 color={colors.text}
                 backgroundColor={colors.background}
-                onPress={() => { }}
+                onPress={() => {}}
               />
               <TouchableOpacity
                 style={{ paddingHorizontal: 10, marginTop: 5 }}
@@ -183,7 +181,6 @@ const HomeStackScreen = ({ navigation }) => {
     </HomeStack.Navigator>
   );
 };
-
 const NotificationStackScreen = ({ navigation }) => (
   <NotificationStack.Navigator
     screenOptions={{

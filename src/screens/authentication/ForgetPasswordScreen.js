@@ -11,13 +11,10 @@ import {
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { LinearGradient } from "expo-linear-gradient";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import Feather from "react-native-vector-icons/Feather";
 
-import { FontAwesome, Feather } from "@expo/vector-icons";
-
-/* import FontAwesome from "react-native-vector-icons/FontAwesome";
-import Feather from "react-native-vector-icons/Feather"; */
-
-const SignUpScreen = ({ navigation }) => {
+const ForgetPasswordScreen = ({ navigation }) => {
   const [data, setData] = React.useState({
     username: "",
     password: "",
@@ -165,12 +162,7 @@ const SignUpScreen = ({ navigation }) => {
             </Text>
           </View>
           <View style={styles.button}>
-            <TouchableOpacity
-              style={styles.signIn}
-              onPress={() => {
-                navigation.navigate("SignUp");
-              }}
-            >
+            <TouchableOpacity style={styles.signIn} onPress={() => {}}>
               <LinearGradient
                 colors={["#FFA07A", "#FF6347"]}
                 style={styles.signIn}
@@ -189,7 +181,7 @@ const SignUpScreen = ({ navigation }) => {
             </TouchableOpacity>
 
             <TouchableOpacity
-              onPress={() => navigation.navigate("SignIn")}
+              onPress={() => navigation.goBack()}
               style={[
                 styles.signIn,
                 {
@@ -217,7 +209,7 @@ const SignUpScreen = ({ navigation }) => {
   );
 };
 
-export default SignUpScreen;
+export default ForgetPasswordScreen;
 
 const styles = StyleSheet.create({
   container: {

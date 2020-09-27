@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { View, ActivityIndicator, StyleSheet } from "react-native";
-import { useTheme } from "react-native-paper";
 import {
   NavigationContainer,
   DefaultTheme as NavigationDefaultTheme,
@@ -19,19 +18,15 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import { DrawerContent } from "./src/navigation/DrawerContent";
 
-//import { Icon } from "@expo/vector-icons";
-import Icon from "react-native-vector-icons/Ionicons";
 import MainTabScreen from "./src/screens/MainTabScreen";
 import SupportScreen from "./src/screens/SupportScreen";
 import SettingsScreen from "./src/screens/SettingsScreen";
 import BookmarkScreen from "./src/screens/BookmarkScreen";
-import SignInScreen from "./src/screens/authentication/SignInScreen";
-import SignUpScreen from "./src/screens/authentication/SignUpScreen";
-import ForgetPasswordScreen from "./src/screens/authentication/ForgetPasswordScreen";
+import RootStackScreen from "./src/screens/authentication/RootStackScreen";
 import { AuthContext } from "./src/components/context";
 
 import AsyncStorage from "@react-native-community/async-storage";
-
+import Icon from "react-native-vector-icons/Ionicons";
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
@@ -40,7 +35,6 @@ const App = () => {
   // const [userToken, setUserToken] = React.useState(null);
 
   const [progress, setProgress] = React.useState(new Animated.Value(0));
-
   const scale = Animated.interpolate(progress, {
     inputRange: [0, 1],
     outputRange: [1, 0.8],
@@ -181,75 +175,13 @@ const App = () => {
     );
   }
 
-  const AuthStack = createStackNavigator();
-
-  const AuthenticationStackScreen = ({ navigation, style }) => {
-    const { colors } = useTheme();
-
-    return (
-      <Animated.View style={StyleSheet.flatten([styles.stack, style])}>
-        <AuthStack.Navigator
-          initialRouteName="SignUp"
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: colors.background,
-              shadowColor: colors.background, // iOS
-              elevation: 0, // Android
-            },
-            headerTintColor: colors.text,
-          }}
-        >
-          <AuthStack.Screen
-            name="SignUp"
-            options={{
-              title: "Sign Up",
-              headerBackTitle: null,
-              headerBackTitleVisible: false,
-              headerLeft: () => (
-                <View style={{ marginLeft: 10 }}>
-                  <Icon.Button
-                    name="ios-menu"
-                    size={25}
-                    backgroundColor={colors.background}
-                    color={colors.text}
-                    onPress={() => navigation.openDrawer()}
-                  />
-                </View>
-              ),
-            }}
-            component={SignUpScreen}
-          />
-          <AuthStack.Screen
-            name="SignIn"
-            component={SignInScreen}
-            options={{
-              title: "Sign In",
-              headerBackTitle: null,
-              headerBackTitleVisible: false,
-            }}
-          />
-
-          <AuthStack.Screen
-            name="ForgetPassword"
-            options={{
-              title: "Reset Password",
-              headerBackTitle: null,
-              headerBackTitleVisible: false,
-            }}
-            component={ForgetPasswordScreen}
-          />
-        </AuthStack.Navigator>
-      </Animated.View>
-    );
-  };
-
   const StackScreen = ({ navigation, style }) => {
     return (
       <Animated.View style={StyleSheet.flatten([styles.stack, style])}>
         <Stack.Navigator
           screenOptions={{
             headerTransparent: true,
-            headerTitle: null,
+            headerTitle: true,
             headerLeft: () => (
               <View style={styles.menuOuter}>
                 <Icon
@@ -283,7 +215,7 @@ const App = () => {
     <PaperProvider theme={theme}>
       <AuthContext.Provider value={authContext}>
         <NavigationContainer theme={theme}>
-          <LinearGradient style={{ flex: 1 }} colors={["#f5f5f5", "#fff0f0"]}>
+          <LinearGradient style={{ flex: 1 }} colors={["#b5ffbe", "#b5ffbe"]}>
             <Drawer.Navigator
               drawerType="slide"
               overlayColor="transparent"
@@ -302,12 +234,6 @@ const App = () => {
             >
               <Drawer.Screen name="HomeDrawer">
                 {(props) => <StackScreen {...props} style={animatedStyle} />}
-              </Drawer.Screen>
-
-              <Drawer.Screen name="AuthScreen">
-                {(props) => (
-                  <AuthenticationStackScreen {...props} style={animatedStyle} />
-                )}
               </Drawer.Screen>
             </Drawer.Navigator>
           </LinearGradient>
