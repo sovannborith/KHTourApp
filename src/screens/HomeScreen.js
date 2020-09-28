@@ -10,13 +10,13 @@ import {
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Swiper from "react-native-swiper";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import StarRating from "../components/StarRating";
 import { firebase, Auth } from "../server/firebaseConfig";
+import Banner from "../components/Banner";
 
 const HomeScreen = ({ navigation }) => {
   const { colors } = useTheme();
@@ -27,54 +27,10 @@ const HomeScreen = ({ navigation }) => {
   //var user = firebase.auth().currentUser;
 
   return (
-    <SafeAreaView style={{ flex: 1, paddingTop: 40 }}>
+    <SafeAreaView style={{ flex: 1, paddingTop: 20 }}>
       <ScrollView style={styles.container}>
         <StatusBar barStyle={theme.dark ? "light-content" : "dark-content"} />
-        <View style={styles.sliderContainer}>
-          <Swiper
-            autoplay
-            horizontal={false}
-            height={200}
-            activeDotColor="#FF6347"
-          >
-            <View style={styles.slide}>
-              <Image
-                source={require("../assets/banners/tour_banner_01.jpg")}
-                resizeMode="cover"
-                style={styles.sliderImage}
-              />
-            </View>
-            <View style={styles.slide}>
-              <Image
-                source={require("../assets/banners/tour_banner_02.jpg")}
-                resizeMode="cover"
-                style={styles.sliderImage}
-              />
-            </View>
-            <View style={styles.slide}>
-              <Image
-                source={require("../assets/banners/tour_banner_03.jpg")}
-                resizeMode="cover"
-                style={styles.sliderImage}
-              />
-            </View>
-            <View style={styles.slide}>
-              <Image
-                source={require("../assets/banners/tour_banner_04.jpg")}
-                resizeMode="cover"
-                style={styles.sliderImage}
-              />
-            </View>
-            <View style={styles.slide}>
-              <Image
-                source={require("../assets/banners/tour_banner_05.jpg")}
-                resizeMode="cover"
-                style={styles.sliderImage}
-              />
-            </View>
-          </Swiper>
-        </View>
-
+        <Banner horizontal={false} />
         <View style={styles.categoryContainer}>
           <TouchableOpacity
             style={styles.categoryBtn}

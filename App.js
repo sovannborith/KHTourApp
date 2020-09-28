@@ -29,7 +29,7 @@ import SignInScreen from "./src/screens/authentication/SignInScreen";
 import SignUpScreen from "./src/screens/authentication/SignUpScreen";
 import ForgetPasswordScreen from "./src/screens/authentication/ForgetPasswordScreen";
 import { AuthContext } from "./src/components/context";
-
+import DrawerHeaderLeft from "./src/components/DrawerHeaderLeft";
 import AsyncStorage from "@react-native-community/async-storage";
 
 const Drawer = createDrawerNavigator();
@@ -197,6 +197,9 @@ const App = () => {
               elevation: 0, // Android
             },
             headerTintColor: colors.text,
+            headerLeft: () => (
+              <DrawerHeaderLeft onPress={() => navigation.openDrawer()} />
+            ),
           }}
         >
           <AuthStack.Screen
@@ -205,17 +208,6 @@ const App = () => {
               title: "Sign Up",
               headerBackTitle: null,
               headerBackTitleVisible: false,
-              headerLeft: () => (
-                <View style={{ marginLeft: 10 }}>
-                  <Icon.Button
-                    name="ios-menu"
-                    size={25}
-                    backgroundColor={colors.background}
-                    color={colors.text}
-                    onPress={() => navigation.openDrawer()}
-                  />
-                </View>
-              ),
             }}
             component={SignUpScreen}
           />
@@ -251,14 +243,7 @@ const App = () => {
             headerTransparent: true,
             headerTitle: null,
             headerLeft: () => (
-              <View style={styles.menuOuter}>
-                <Icon
-                  name="ios-menu"
-                  size={25}
-                  color={"black"}
-                  onPress={() => navigation.openDrawer()}
-                />
-              </View>
+              <DrawerHeaderLeft onPress={() => navigation.openDrawer()} />
             ),
           }}
         >

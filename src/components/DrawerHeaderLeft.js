@@ -2,18 +2,19 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
-export default function DrawerHeaderLeft({ onPress }) {
+const DrawerHeaderLeft = ({ onPress }) => {
   return (
-    <View>
-      <View style={styles.menuOuter}>
-        <Icon name="ios-menu" size={25} color={"black"} onPress={onPress} />
-      </View>
+    <View style={styles.menuOuter}>
+      <Icon name="ios-menu" size={25} color={"black"} onPress={onPress} />
     </View>
   );
-}
+};
+
+export default DrawerHeaderLeft;
+
 const styles = StyleSheet.create({
   menuOuter: {
-    top: -5,
+    top: -17,
     marginLeft: 20,
     backgroundColor: "#ffffff",
     borderWidth: 1,

@@ -11,9 +11,8 @@ import {
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { LinearGradient } from "expo-linear-gradient";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import Feather from "react-native-vector-icons/Feather";
-
+import { FontAwesome, Feather } from "@expo/vector-icons";
+import Banner from "../../components/Banner";
 const ForgetPasswordScreen = ({ navigation }) => {
   const [data, setData] = React.useState({
     username: "",
@@ -71,6 +70,7 @@ const ForgetPasswordScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#FF6347" barStyle="light-content" />
+      <Banner horizontal={true} />
       <View style={styles.header}>
         <Text style={styles.text_header}>Register Now!</Text>
       </View>

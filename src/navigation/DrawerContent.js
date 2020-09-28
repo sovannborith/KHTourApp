@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet } from "react-native";
 import {
   useTheme,
   Avatar,
@@ -11,17 +11,14 @@ import {
   Switch,
 } from "react-native-paper";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
+
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { AntDesign } from "@expo/vector-icons";
 import { AuthContext } from "../components/context";
 
 export function DrawerContent(props) {
   const paperTheme = useTheme();
-  const insets = useSafeAreaInsets();
+
   const { toggleTheme } = React.useContext(AuthContext);
 
   const avatarSize = 100;
@@ -32,7 +29,12 @@ export function DrawerContent(props) {
         scrollEnabled={false}
         contentContainerStyle={{ flex: 1 }}
       >
-        <View style={{ flex: 1, paddingTop: 50 }}>
+        <View
+          style={{
+            flex: 1,
+            paddingTop: 50,
+          }}
+        >
           <View style={styles.userInfoSection}>
             <View
               style={{
@@ -40,7 +42,6 @@ export function DrawerContent(props) {
                 flexDirection: "colum",
                 justifyContent: "center",
                 alignItems: "center",
-                marginLeft: 60,
               }}
             >
               <Avatar.Image
@@ -50,7 +51,9 @@ export function DrawerContent(props) {
                 }}
                 size={avatarSize}
               />
-              <View>
+              <View
+                style={{ borderColor: "red", position: "absolute", top: 50 }}
+              >
                 <Title style={styles.title}>Hi Anonymous</Title>
                 <Caption style={styles.caption}>@Anonymous</Caption>
               </View>
@@ -132,7 +135,9 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 100,
   },
-  userInfoSection: {},
+  userInfoSection: {
+    paddingLeft: 50,
+  },
   title: {
     fontSize: 16,
     fontWeight: "bold",

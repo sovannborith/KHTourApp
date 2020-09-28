@@ -44,6 +44,11 @@ const tabs = {
       <FontAwesome5 name={"hotel"} size={22} color={PRIMARY_COLOR} />
     ),
   },
+  Provinces: {
+    icon: ({ progress }) => (
+      <AntDesign name="appstore-o" size={22} color={PRIMARY_COLOR} />
+    ),
+  },
   Emergency: {
     icon: ({ progress }) => (
       <AntDesign name={"contacts"} size={22} color={PRIMARY_COLOR} />
@@ -56,7 +61,7 @@ const MainTabScreen = () => (
     tabBar={(props) => (
       <AnimatedTabBar
         dotColor={"#f54ece"}
-        dotSize={40}
+        dotSize={50}
         barColor={"#246b6b"}
         tabs={tabs}
         {...props}
@@ -84,6 +89,14 @@ const MainTabScreen = () => (
       component={ProfileStackScreen}
       options={{
         tabBarLabel: "Hotels",
+        tabBarColor: "#694fad",
+      }}
+    />
+    <Tab.Screen
+      name="Provinces"
+      component={HomeStackScreen}
+      options={{
+        tabBarLabel: "Proinces",
         tabBarColor: "#694fad",
       }}
     />

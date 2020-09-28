@@ -18,6 +18,7 @@ import { useTheme } from "react-native-paper";
 import { AuthContext } from "../../components/context";
 
 import Users from "../../models/users";
+import Banner from "../../components/Banner";
 
 const SignInScreen = ({ navigation }) => {
   const [data, setData] = React.useState({
@@ -114,6 +115,7 @@ const SignInScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#FF6347" barStyle="light-content" />
+      <Banner horizontal={true} />
       <View style={styles.header}>
         <Text style={styles.text_header}>Welcome!</Text>
       </View>
