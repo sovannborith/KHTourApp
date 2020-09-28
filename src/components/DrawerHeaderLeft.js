@@ -2,18 +2,15 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
-export default DrawerHeaderLeft = ({ onPress }) => {
+export default function DrawerHeaderLeft({ onPress }) {
   return (
-    <View style={styles.menuOuter}>
-      <Icon
-        name="ios-menu"
-        size={25}
-        color={"black"}
-        onPress={onPress}
-      />
+    <View>
+      <View style={styles.menuOuter}>
+        <Icon name="ios-menu" size={25} color={"black"} onPress={onPress} />
+      </View>
     </View>
   );
-};
+}
 const styles = StyleSheet.create({
   menuOuter: {
     top: -5,
