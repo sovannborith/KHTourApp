@@ -5,15 +5,10 @@ import {
   Image,
   StyleSheet,
   StatusBar,
-  TouchableOpacity,
   ScrollView,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import Fontisto from "react-native-vector-icons/Fontisto";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import StarRating from "../components/StarRating";
 import { firebase, Auth } from "../server/firebaseConfig";
 import Banner from "../components/Banner";
@@ -28,66 +23,9 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1, paddingTop: 20 }}>
+      <StatusBar barStyle={theme.dark ? "light-content" : "dark-content"} />
+      <Banner horizontal={false} />
       <ScrollView style={styles.container}>
-        <StatusBar barStyle={theme.dark ? "light-content" : "dark-content"} />
-        <Banner horizontal={false} />
-        <View style={styles.categoryContainer}>
-          <TouchableOpacity
-            style={styles.categoryBtn}
-            onPress={() => {
-              navigation.navigate("CardListScreen", { title: "Resturant" });
-            }}
-          >
-            <View style={styles.categoryIcon}>
-              <Ionicons name="ios-restaurant" size={35} color="#FF6347" />
-            </View>
-            <Text style={styles.categoryBtnTxt}>Restaurant</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.categoryBtn}
-            onPress={() => {
-              navigation.navigate("CardListScreen", {
-                title: "Fastfoot Center",
-              });
-            }}
-          >
-            <View style={styles.categoryIcon}>
-              <MaterialCommunityIcons
-                name="food-fork-drink"
-                size={35}
-                color="#FF6347"
-              />
-            </View>
-            <Text style={styles.categoryBtnTxt}>Fastfood Center</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.categoryBtn} onPress={() => {}}>
-            <View style={styles.categoryIcon}>
-              <MaterialCommunityIcons name="food" size={35} color="#FF6347" />
-            </View>
-            <Text style={styles.categoryBtnTxt}>Snacks Corner</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={[styles.categoryContainer, { marginTop: 10 }]}>
-          <TouchableOpacity style={styles.categoryBtn} onPress={() => {}}>
-            <View style={styles.categoryIcon}>
-              <Fontisto name="hotel" size={35} color="#FF6347" />
-            </View>
-            <Text style={styles.categoryBtnTxt}>Hotels</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.categoryBtn} onPress={() => {}}>
-            <View style={styles.categoryIcon}>
-              <Ionicons name="md-restaurant" size={35} color="#FF6347" />
-            </View>
-            <Text style={styles.categoryBtnTxt}>Dineouts</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.categoryBtn} onPress={() => {}}>
-            <View style={styles.categoryIcon}>
-              <MaterialIcons name="expand-more" size={35} color="#FF6347" />
-            </View>
-            <Text style={styles.categoryBtnTxt}>Show More</Text>
-          </TouchableOpacity>
-        </View>
-
         <View style={styles.cardsWrapper}>
           <Text
             style={{
@@ -102,7 +40,7 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.card}>
             <View style={styles.cardImgWrapper}>
               <Image
-                source={require("../assets/banners/food-banner2.jpg")}
+                source={require("../assets/Resorts/img_00001.jpg")}
                 resizeMode="cover"
                 style={styles.cardImg}
               />
@@ -118,7 +56,7 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.card}>
             <View style={styles.cardImgWrapper}>
               <Image
-                source={require("../assets/banners/food-banner3.jpg")}
+                source={require("../assets/Resorts/img_00002.jpg")}
                 resizeMode="cover"
                 style={styles.cardImg}
               />
@@ -134,7 +72,55 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.card}>
             <View style={styles.cardImgWrapper}>
               <Image
-                source={require("../assets/banners/food-banner4.jpg")}
+                source={require("../assets/Resorts/img_00003.jpg")}
+                resizeMode="cover"
+                style={styles.cardImg}
+              />
+            </View>
+            <View style={styles.cardInfo}>
+              <Text style={styles.cardTitle}>Amazing Food Place</Text>
+              <StarRating ratings={4} reviews={99} />
+              <Text style={styles.cardDetails}>
+                Amazing description for this amazing place
+              </Text>
+            </View>
+          </View>
+          <View style={styles.card}>
+            <View style={styles.cardImgWrapper}>
+              <Image
+                source={require("../assets/Resorts/img_00004.jpg")}
+                resizeMode="cover"
+                style={styles.cardImg}
+              />
+            </View>
+            <View style={styles.cardInfo}>
+              <Text style={styles.cardTitle}>Amazing Food Place</Text>
+              <StarRating ratings={4} reviews={99} />
+              <Text style={styles.cardDetails}>
+                Amazing description for this amazing place
+              </Text>
+            </View>
+          </View>
+          <View style={styles.card}>
+            <View style={styles.cardImgWrapper}>
+              <Image
+                source={require("../assets/Resorts/img_00005.jpg")}
+                resizeMode="cover"
+                style={styles.cardImg}
+              />
+            </View>
+            <View style={styles.cardInfo}>
+              <Text style={styles.cardTitle}>Amazing Food Place</Text>
+              <StarRating ratings={4} reviews={99} />
+              <Text style={styles.cardDetails}>
+                Amazing description for this amazing place
+              </Text>
+            </View>
+          </View>
+          <View style={styles.card}>
+            <View style={styles.cardImgWrapper}>
+              <Image
+                source={require("../assets/Resorts/img_00006.jpg")}
                 resizeMode="cover"
                 style={styles.cardImg}
               />

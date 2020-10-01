@@ -21,10 +21,12 @@ import NotificationScreen from "./NotificationScreen";
 import ProfileScreen from "./ProfileScreen";
 import EditProfileScreen from "./EditProfileScreen";
 import { PRIMARY_COLOR } from "../constants/constant";
+import ExploreScreen from "../screens/ExploreScreen";
 
 const HomeStack = createStackNavigator();
 const NotificationStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
+const ExploreStack = createStackNavigator();
 
 const Tab = createBottomTabNavigator();
 
@@ -53,7 +55,12 @@ const tabs = {
     icon: ({ progress }) => (
       <AntDesign name={"contacts"} size={22} color={PRIMARY_COLOR} />
     ),
-  },
+  } /* 
+  Explore: {
+    icon: ({ progress }) => (
+      <AntDesign name={"contacts"} size={22} color={PRIMARY_COLOR} />
+    ),
+  }, */,
 };
 
 const MainTabScreen = () => (
@@ -76,12 +83,21 @@ const MainTabScreen = () => (
         tabBarColor: "#FF6347",
       }}
     />
-    <Tab.Screen
+    {/* <Tab.Screen
       name="Resorts"
       component={NotificationStackScreen}
       options={{
         tabBarLabel: "Resorts",
         tabBarColor: "#1f65ff",
+      }}
+    /> */}
+
+    <Tab.Screen
+      name="Resorts"
+      component={ProfileStackScreen}
+      options={{
+        tabBarLabel: "Resorts",
+        tabBarColor: "#694fad",
       }}
     />
     <Tab.Screen
@@ -96,7 +112,7 @@ const MainTabScreen = () => (
       name="Provinces"
       component={HomeStackScreen}
       options={{
-        tabBarLabel: "Proinces",
+        tabBarLabel: "Provinces",
         tabBarColor: "#694fad",
       }}
     />
@@ -108,6 +124,14 @@ const MainTabScreen = () => (
         tabBarColor: "#694fad",
       }}
     />
+    {/* <Tab.Screen
+      name="Explore"
+      component={ExploreStackScreen}
+      options={{
+        tabBarLabel: "Explore",
+        tabBarColor: "#694fad",
+      }}
+    /> */}
   </Tab.Navigator>
 );
 
@@ -172,7 +196,7 @@ const HomeStackScreen = ({ navigation }) => {
           ),
         }}
       />
-      <HomeStack.Screen
+      {/* <HomeStack.Screen
         name="CardListScreen"
         component={CardListScreen}
         options={({ route }) => ({
@@ -190,7 +214,7 @@ const HomeStackScreen = ({ navigation }) => {
           headerTransparent: true,
           headerTintColor: "#fff",
         })}
-      />
+      /> */}
     </HomeStack.Navigator>
   );
 };
@@ -221,6 +245,35 @@ const NotificationStackScreen = ({ navigation }) => (
       }}
     />
   </NotificationStack.Navigator>
+);
+
+const ExploreStackScreen = ({ navigation }) => (
+  <ExploreStack.Navigator
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: "#1f65ff",
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        fontWeight: "bold",
+      },
+    }}
+  >
+    <ExploreStack.Screen
+      name="Explore"
+      component={ExploreScreen}
+      options={{
+        headerLeft: () => (
+          <Icon.Button
+            name="ios-menu"
+            size={25}
+            backgroundColor="#1f65ff"
+            onPress={() => navigation.openDrawer()}
+          />
+        ),
+      }}
+    />
+  </ExploreStack.Navigator>
 );
 
 const ProfileStackScreen = ({ navigation }) => {

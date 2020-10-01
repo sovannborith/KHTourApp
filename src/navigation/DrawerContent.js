@@ -19,7 +19,7 @@ import { AuthContext } from "../components/context";
 export function DrawerContent(props) {
   const paperTheme = useTheme();
 
-  const { toggleTheme } = React.useContext(AuthContext);
+  const { signOut, toggleTheme } = React.useContext(AuthContext);
 
   const avatarSize = 100;
   return (
@@ -102,7 +102,7 @@ export function DrawerContent(props) {
           <Drawer.Section title="Preferences">
             <TouchableRipple
               onPress={() => {
-                toggleTheme();
+                //toggleTheme();
               }}
             >
               <View style={styles.preference}>

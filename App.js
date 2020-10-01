@@ -47,10 +47,17 @@ const App = () => {
   });
   const borderRadius = Animated.interpolate(progress, {
     inputRange: [0, 1],
-    outputRange: [0, 16],
+    outputRange: [0, 30],
   });
 
-  const animatedStyle = { borderRadius, transform: [{ scale }] };
+  const animatedStyle = {
+    borderRadius,
+    transform: [{ scale }],
+    shadowColor: "grey",
+    shadowRadius: 3,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 5,
+  };
 
   const [isDarkTheme, setIsDarkTheme] = React.useState(false);
 
@@ -242,6 +249,7 @@ const App = () => {
           screenOptions={{
             headerTransparent: true,
             headerTitle: null,
+            backgroundColor: "#246b6b",
             headerLeft: () => (
               <DrawerHeaderLeft onPress={() => navigation.openDrawer()} />
             ),
