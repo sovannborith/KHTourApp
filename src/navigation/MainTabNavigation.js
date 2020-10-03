@@ -14,12 +14,12 @@ import {
 import { useTheme, Avatar } from "react-native-paper";
 import { View } from "react-native-animatable";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import CardListScreen from "./CardListScreen";
-import CardItemDetails from "./CardItemDetails";
-import HomeScreen from "./HomeScreen";
-import NotificationScreen from "./NotificationScreen";
-import ProfileScreen from "./ProfileScreen";
-import EditProfileScreen from "./EditProfileScreen";
+import CardListScreen from "../screens/CardListScreen";
+import CardItemDetails from "../screens/CardItemDetails";
+import HomeScreen from "../screens/HomeScreen";
+import NotificationScreen from "../screens/NotificationScreen";
+import ProfileScreen from "../screens/ProfileScreen";
+import EditProfileScreen from "../screens/EditProfileScreen";
 import { PRIMARY_COLOR } from "../constants/constant";
 import ExploreScreen from "../screens/ExploreScreen";
 
@@ -55,15 +55,15 @@ const tabs = {
     icon: ({ progress }) => (
       <AntDesign name={"contacts"} size={22} color={PRIMARY_COLOR} />
     ),
-  } /* 
+  },
   Explore: {
     icon: ({ progress }) => (
-      <AntDesign name={"contacts"} size={22} color={PRIMARY_COLOR} />
+      <AntDesign name={"appstore-o"} size={22} color={PRIMARY_COLOR} />
     ),
-  }, */,
+  },
 };
 
-const MainTabScreen = () => (
+const MainTabNavigation = () => (
   <Tab.Navigator
     tabBar={(props) => (
       <AnimatedTabBar
@@ -83,14 +83,6 @@ const MainTabScreen = () => (
         tabBarColor: "#FF6347",
       }}
     />
-    {/* <Tab.Screen
-      name="Resorts"
-      component={NotificationStackScreen}
-      options={{
-        tabBarLabel: "Resorts",
-        tabBarColor: "#1f65ff",
-      }}
-    /> */}
 
     <Tab.Screen
       name="Resorts"
@@ -102,7 +94,7 @@ const MainTabScreen = () => (
     />
     <Tab.Screen
       name="Hotels"
-      component={ProfileStackScreen}
+      component={ExploreStackScreen}
       options={{
         tabBarLabel: "Hotels",
         tabBarColor: "#694fad",
@@ -118,20 +110,21 @@ const MainTabScreen = () => (
     />
     <Tab.Screen
       name="Emergency"
-      component={ProfileStackScreen}
+      component={ExploreStackScreen}
       options={{
         tabBarLabel: "Emergency",
         tabBarColor: "#694fad",
       }}
     />
-    {/* <Tab.Screen
+
+    <Tab.Screen
       name="Explore"
-      component={ExploreStackScreen}
+      component={HomeStackScreen}
       options={{
         tabBarLabel: "Explore",
         tabBarColor: "#694fad",
       }}
-    /> */}
+    />
   </Tab.Navigator>
 );
 
@@ -196,28 +189,10 @@ const HomeStackScreen = ({ navigation }) => {
           ),
         }}
       />
-      {/* <HomeStack.Screen
-        name="CardListScreen"
-        component={CardListScreen}
-        options={({ route }) => ({
-          title: route.params.title,
-          headerBackTitleVisible: false,
-        })}
-      />
-      <HomeStack.Screen
-        name="CardItemDetails"
-        component={CardItemDetails}
-        options={({ route }) => ({
-          // title: route.params.title,
-          headerBackTitleVisible: false,
-          headerTitle: false,
-          headerTransparent: true,
-          headerTintColor: "#fff",
-        })}
-      /> */}
     </HomeStack.Navigator>
   );
 };
+
 const NotificationStackScreen = ({ navigation }) => (
   <NotificationStack.Navigator
     screenOptions={{
@@ -332,4 +307,4 @@ const ProfileStackScreen = ({ navigation }) => {
   );
 };
 
-export default MainTabScreen;
+export default MainTabNavigation;

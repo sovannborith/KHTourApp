@@ -20,25 +20,24 @@ import { LinearGradient } from "expo-linear-gradient";
 import { DrawerContent } from "./src/navigation/DrawerContent";
 
 //import { Icon } from "@expo/vector-icons";
-import Icon from "react-native-vector-icons/Ionicons";
-import MainTabScreen from "./src/screens/MainTabScreen";
+import MainTabNavigation from "./src/navigation/MainTabNavigation";
 import SupportScreen from "./src/screens/SupportScreen";
 import SettingsScreen from "./src/screens/SettingsScreen";
 import BookmarkScreen from "./src/screens/BookmarkScreen";
 import SignInScreen from "./src/screens/authentication/SignInScreen";
 import SignUpScreen from "./src/screens/authentication/SignUpScreen";
 import ForgetPasswordScreen from "./src/screens/authentication/ForgetPasswordScreen";
-import { AuthContext } from "./src/components/context";
 import DrawerHeaderLeft from "./src/components/DrawerHeaderLeft";
 import AsyncStorage from "@react-native-community/async-storage";
+
+import { UserProvider } from "./src/server/context/UserContext";
+import { FirebaseProvider } from "./src/server/context/FirebaseContext";
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
 const App = () => {
-  // const [isLoading, setIsLoading] = React.useState(true);
-  // const [userToken, setUserToken] = React.useState(null);
-
+  // -- Animated screen
   const [progress, setProgress] = React.useState(new Animated.Value(0));
 
   const scale = Animated.interpolate(progress, {
@@ -58,14 +57,14 @@ const App = () => {
     shadowOffset: { width: 0, height: 2 },
     elevation: 5,
   };
-
+  // -- Animated screen
   const [isDarkTheme, setIsDarkTheme] = React.useState(false);
 
-  const initialLoginState = {
+  /* const initialLoginState = {
     isLoading: true,
     userName: null,
     userToken: null,
-  };
+  }; */
 
   const CustomDefaultTheme = {
     ...NavigationDefaultTheme,
@@ -91,7 +90,7 @@ const App = () => {
 
   const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
 
-  const loginReducer = (prevState, action) => {
+  /* const loginReducer = (prevState, action) => {
     switch (action.type) {
       case "RETRIEVE_TOKEN":
         return {
@@ -121,14 +120,14 @@ const App = () => {
           isLoading: false,
         };
     }
-  };
+  }; */
 
-  const [loginState, dispatch] = React.useReducer(
+  /* const [loginState, dispatch] = React.useReducer(
     loginReducer,
     initialLoginState
-  );
+  ); */
 
-  const authContext = React.useMemo(
+  /* const authContext = React.useMemo(
     () => ({
       signIn: async (foundUser) => {
         // setUserToken('fgkj');
@@ -163,9 +162,9 @@ const App = () => {
       },
     }),
     []
-  );
+  ); */
 
-  useEffect(() => {
+  /* useEffect(() => {
     setTimeout(async () => {
       // setIsLoading(false);
       let userToken;
@@ -186,7 +185,7 @@ const App = () => {
         <ActivityIndicator size="large" />
       </View>
     );
-  }
+  } */
 
   const AuthStack = createStackNavigator();
 
@@ -255,8 +254,8 @@ const App = () => {
             ),
           }}
         >
-          <Stack.Screen name="HomeDrawer">
-            {(props) => <MainTabScreen {...props} />}
+          <Stack.Screen name="HomeScreen">
+            {(props) => <MainTabNavigation {...props} />}
           </Stack.Screen>
           <Stack.Screen name="SupportScreen">
             {(props) => <SupportScreen {...props} />}
@@ -274,38 +273,43 @@ const App = () => {
 
   return (
     <PaperProvider theme={theme}>
-      <AuthContext.Provider value={authContext}>
-        <NavigationContainer theme={theme}>
-          <LinearGradient style={{ flex: 1 }} colors={["#f5f5f5", "#fff0f0"]}>
-            <Drawer.Navigator
-              drawerType="slide"
-              overlayColor="transparent"
-              drawerStyle={styles.drawerStyles}
-              contentContainerStyle={{ flex: 1 }}
-              drawerContentOptions={{
-                activeBackgroundColor: "transparent",
-                activeTintColor: "white",
-                inactiveTintColor: "white",
-              }}
-              sceneContainerStyle={{ backgroundColor: "transparent" }}
-              drawerContent={(props) => {
-                setProgress(props.progress);
-                return <DrawerContent {...props} />;
-              }}
-            >
-              <Drawer.Screen name="HomeDrawer">
-                {(props) => <StackScreen {...props} style={animatedStyle} />}
-              </Drawer.Screen>
+      <FirebaseProvider>
+        <UserProvider>
+          <NavigationContainer theme={theme}>
+            <LinearGradient style={{ flex: 1 }} colors={["#f5f5f5", "#fff0f0"]}>
+              <Drawer.Navigator
+                drawerType="slide"
+                overlayColor="transparent"
+                drawerStyle={styles.drawerStyles}
+                contentContainerStyle={{ flex: 1 }}
+                drawerContentOptions={{
+                  activeBackgroundColor: "transparent",
+                  activeTintColor: "white",
+                  inactiveTintColor: "white",
+                }}
+                sceneContainerStyle={{ backgroundColor: "transparent" }}
+                drawerContent={(props) => {
+                  setProgress(props.progress);
+                  return <DrawerContent {...props} />;
+                }}
+              >
+                <Drawer.Screen name="HomeDrawer">
+                  {(props) => <StackScreen {...props} style={animatedStyle} />}
+                </Drawer.Screen>
 
-              <Drawer.Screen name="AuthScreen">
-                {(props) => (
-                  <AuthenticationStackScreen {...props} style={animatedStyle} />
-                )}
-              </Drawer.Screen>
-            </Drawer.Navigator>
-          </LinearGradient>
-        </NavigationContainer>
-      </AuthContext.Provider>
+                <Drawer.Screen name="AuthScreen">
+                  {(props) => (
+                    <AuthenticationStackScreen
+                      {...props}
+                      style={animatedStyle}
+                    />
+                  )}
+                </Drawer.Screen>
+              </Drawer.Navigator>
+            </LinearGradient>
+          </NavigationContainer>
+        </UserProvider>
+      </FirebaseProvider>
     </PaperProvider>
   );
 };

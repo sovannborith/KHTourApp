@@ -10,7 +10,7 @@ import {
 import { useTheme } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import StarRating from "../components/StarRating";
-import { firebase, Auth } from "../server/firebaseConfig";
+import { firebase, Auth } from "../server/firebase/FirebaseConfig";
 import Banner from "../components/Banner";
 
 const HomeScreen = ({ navigation }) => {

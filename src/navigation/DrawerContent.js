@@ -19,7 +19,7 @@ import { AuthContext } from "../components/context";
 export function DrawerContent(props) {
   const paperTheme = useTheme();
 
-  const { signOut, toggleTheme } = React.useContext(AuthContext);
+  //const { toggleTheme } = React.useContext(AuthContext);
 
   const avatarSize = 100;
   return (

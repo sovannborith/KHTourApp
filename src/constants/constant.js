@@ -7,6 +7,7 @@ const PRIMARY_COLOR = "#edfafa";
 const ICON_SHADOW_WIDTH = 2;
 const ICON_ACTIVE_COLOR = "#ffffff";
 const PRIMARY_BG_COLOR = "#deffdb";
+const APP_WIDTH = "90%";
 export {
   DEFAULT_ITEM_ANIMATION_DURATION,
   TAB_BAR_HEIGHT,
@@ -17,6 +18,7 @@ export {
   ICON_SHADOW_WIDTH,
   ICON_ACTIVE_COLOR,
   PRIMARY_BG_COLOR,
+  APP_WIDTH,
 };
 /* Drawer Menu */
 export const alpha = Math.PI / 4;

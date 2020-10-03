@@ -8,7 +8,7 @@ const Banner = ({ horizontal }) => {
       <Swiper
         autoplay
         horizontal={horizontal}
-        height={200}
+        height={150}
         activeDotColor="#FF6347"
       >
         <View style={styles.slide}>
@@ -55,7 +55,7 @@ export default Banner;
 
 const styles = StyleSheet.create({
   sliderContainer: {
-    height: 200,
+    height: 150,
     width: "90%",
     marginTop: 10,
     justifyContent: "center",
