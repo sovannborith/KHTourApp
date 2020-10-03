@@ -28,9 +28,9 @@ const EditProfileScreen = () => {
   //profilePic
   const { colors } = useTheme();
 
-  const componentDidMount = () => {
+  /* const componentDidMount = () => {
     getPermissionAsync();
-  };
+  }; */
 
   const getPermissionAsync = async () => {
     if (Constants.platform.ios) {
@@ -79,7 +79,7 @@ const EditProfileScreen = () => {
   const choosePhotoFromLibrary = async () => {
     try {
       let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.image,
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
         aspect: [4, 3],
         quality: 1,

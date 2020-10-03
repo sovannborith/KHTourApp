@@ -1,9 +1,9 @@
 import React from "react";
 import { View, StyleSheet, Animated, Easing } from "react-native";
-
 import LottieView from "lottie-react-native";
-
 import turism from "../assets/splash/splash-turismo.json";
+
+import { UserContext } from "../server/context/UserContext";
 
 export default class SplashScreen extends React.Component {
   constructor(props) {
@@ -12,15 +12,23 @@ export default class SplashScreen extends React.Component {
       progress: new Animated.Value(0),
     };
 
-    setTimeout(() => {
-      Animated.timing(this.state.progress, {
-        toValue: 1,
-        duration: 5000,
-        easing: Easing.linear,
-        useNativeDriver: true,
-      }).start();
-      this.props.navigation.navigate("Home");
-    }, 5000);
+    const [_, setUser] = useContext(UserContext);
+
+    useEffort(() => {
+      setTimeout(async () => {
+        Animated.timing(this.state.progress, {
+          toValue: 1,
+          duration: 3000,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }).start();
+        setUser((state) => ({
+          ...state,
+          isLoggedIn: false,
+        }));
+        this.props.navigation.navigate("Home");
+      }, 3000);
+    });
   }
   render() {
     return (
@@ -36,27 +44,12 @@ export default class SplashScreen extends React.Component {
     );
   }
 }
-/* 
-const SplashScreen = ({ navigation }) => {
-  return (
-    <LottieView
-      ref={(animation) => {
-        this.animation = animation;
-      }}
-      source={turism}
-    />
-  );
-};
-
-export default SplashScreen; */
-
-/* const { height } = Dimensions.get("screen");
-const height_logo = height * 0.28; */
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    width: "100%",
   },
 });

@@ -3,16 +3,78 @@ import firebase from "firebase";
 import "firebase/auth";
 import "firebase/firestore";
 
-import FirebaseConfig from "../firebase/FirebaseConfig";
-
-const FirebaseContext = createContext({});
-
-if (!firebase.app.length) {
-  firebase.initializeApp(FirebaseConfig);
+import config from "../firebase/config/firebase";
+if (!firebase.apps.length) {
+  firebase.initializeApp(config);
 }
-
+const FirebaseContext = createContext();
 const db = firebase.firestore();
-const Firebase = {};
+
+const Firebase = {
+  getCurrentUser: () => {
+    return firebase.auth().getCurrentUser();
+  },
+  createUser: async (user) => {
+    try {
+      await firebase
+        .auth()
+        .createUserWithEmailAndPassword(user.email, user.passowrd);
+
+      const uid = Firebase.getCurrentUser().uid;
+      let profilePhotoUrl = "default";
+
+      await db.collection("tbl_user_profile").doc(uid).set({
+        user_email: user.email,
+        user_name: user.userName,
+        profile_pic: user.profilePhotoUrl,
+      });
+
+      if (user.profilePhotoUrl) {
+      }
+      delete user.passowrd;
+
+      return { ...user, profilePhotoUrl, uid };
+    } catch (error) {
+      console.log("Error @createUser: ", error.message);
+    }
+  },
+
+  uploadProfilePhoto: async (uri) => {
+    const uid = Firebase.getCurrentUser().uid;
+    try {
+      const photo = await Firebase.getBlob(uri);
+      const imgRef = firebase.storage().ref("profilePhotos").chile(uid);
+      await imgRef.put(photo);
+      const url = await imgRef.getDownloadURL();
+
+      await db.collection("tbl_user_profile").doc(uid).update({
+        profile_pic: url,
+      });
+
+      return url;
+    } catch (error) {
+      console.log("Error @uploadProfilePhoto: ", error);
+    }
+  },
+
+  getBlob: async (url) => {
+    return await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+
+      xhr.onload = () => {
+        resolve(xhr.response);
+      };
+
+      xhr.onerror = () => {
+        reject(new TypeError("Network request failed!"));
+      };
+
+      xhr.responseType = "blob";
+      xhr.open("GET", url, true);
+      xhr.send(null);
+    });
+  },
+};
 
 const FirebaseProvider = (props) => {
   return (

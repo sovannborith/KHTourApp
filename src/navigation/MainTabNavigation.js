@@ -132,7 +132,7 @@ const HomeStackScreen = ({ navigation }) => {
   const { colors } = useTheme();
   return (
     <HomeStack.Navigator
-      initialRouteName="Home"
+      initialRouteName="Splash"
       screenOptions={{
         headerStyle: {
           backgroundColor: colors.background,
@@ -145,6 +145,13 @@ const HomeStackScreen = ({ navigation }) => {
         },
       }}
     >
+      <HomeStack.Screen
+        name="Splash"
+        component={HomeScreen}
+        options={{
+          title: "Welcome to KH Tour",
+        }}
+      />
       <HomeStack.Screen
         name="Home"
         component={HomeScreen}

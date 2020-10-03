@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
-const DrawerHeaderLeft = ({ onPress }) => {
+const HeaderLeft = ({ onPress }) => {
   return (
     <View style={styles.menuOuter}>
       <Icon name="ios-menu" size={25} color={"black"} onPress={onPress} />
@@ -10,7 +10,7 @@ const DrawerHeaderLeft = ({ onPress }) => {
   );
 };
 
-export default DrawerHeaderLeft;
+export default HeaderLeft;
 
 const styles = StyleSheet.create({
   menuOuter: {

@@ -1,13 +1,16 @@
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
 
 const UserContext = createContext([{}, () => {}]);
 
 const UserProvider = (props) => {
-  const [state, setState] = userState({
+  const [state, setState] = useState({
     email: "",
     password: "",
     isLoggedIn: null,
     profilePhotoUrl: "default",
+    userName: "",
+    isActive: true,
+    uid: "",
   });
 
   return (

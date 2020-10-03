@@ -1,4 +1,4 @@
-export default FirebaseConfig = {
+export default {
   apiKey: "AIzaSyBCbQkpMH5lagAZ87ZHxpvv0j1nWXMJL1U",
   authDomain: "kh-tour-app.firebaseapp.com",
   databaseURL: "https://kh-tour-app.firebaseio.com",
