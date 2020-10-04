@@ -24,6 +24,8 @@ import { PRIMARY_COLOR } from "../constants/constant";
 import ExploreScreen from "../screens/ExploreScreen";
 import SplashScreen from "../screens/SplashScreen";
 import ProvinceListScreen from "../screens/ProvinceListScreen";
+import ProvinceDetailScreen from "../screens/ProvinceDetailScreen";
+import AboutUsScreen from "../screens/AboutUsScreen";
 
 const HomeStack = createStackNavigator();
 const NotificationStack = createStackNavigator();
@@ -148,13 +150,6 @@ const HomeStackScreen = ({ navigation }) => {
         },
       }}
     >
-      {/* <HomeStack.Screen
-        name="Splash"
-        component={SplashScreen}
-        options={{
-          title: "Welcome to KH Tour",
-        }}
-      /> */}
       <HomeStack.Screen
         name="Home"
         component={HomeScreen}
@@ -205,6 +200,7 @@ const HomeStackScreen = ({ navigation }) => {
 
 const ProvinceStackScreen = ({ navigation }) => (
   <ProvinceStack.Navigator
+    initialRouteName="ProvinceList"
     screenOptions={{
       headerStyle: {
         backgroundColor: "#1f65ff",
@@ -218,6 +214,20 @@ const ProvinceStackScreen = ({ navigation }) => (
     <ProvinceStack.Screen
       name="ProvinceList"
       component={ProvinceListScreen}
+      options={{
+        headerLeft: () => (
+          <Icon.Button
+            name="ios-menu"
+            size={25}
+            backgroundColor="#1f65ff"
+            onPress={() => navigation.openDrawer()}
+          />
+        ),
+      }}
+    />
+    <ProvinceStack.Screen
+      name="ProvinceDetail"
+      component={ProvinceDetailScreen}
       options={{
         headerLeft: () => (
           <Icon.Button

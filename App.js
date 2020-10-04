@@ -1,5 +1,5 @@
-import React from "react";
-import { View, ActivityIndicator, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet } from "react-native";
 import { useTheme } from "react-native-paper";
 import {
   NavigationContainer,
@@ -38,7 +38,7 @@ const Stack = createStackNavigator();
 
 const App = () => {
   // -- Animated screen
-  const [progress, setProgress] = React.useState(new Animated.Value(0));
+  const [progress, setProgress] = useState(new Animated.Value(0));
 
   const scale = Animated.interpolate(progress, {
     inputRange: [0, 1],
@@ -48,7 +48,7 @@ const App = () => {
     inputRange: [0, 1],
     outputRange: [0, 30],
   });
-
+  // -- Animated screen
   const animatedStyle = {
     borderRadius,
     transform: [{ scale }],
@@ -57,7 +57,7 @@ const App = () => {
     shadowOffset: { width: 0, height: 2 },
     elevation: 5,
   };
-  // -- Animated screen
+
   const [isDarkTheme, setIsDarkTheme] = React.useState(false);
 
   const CustomDefaultTheme = {
@@ -92,7 +92,7 @@ const App = () => {
     return (
       <Animated.View style={StyleSheet.flatten([styles.stack, style])}>
         <AuthStack.Navigator
-          initialRouteName="SignUp"
+          initialRouteName="SignIn"
           screenOptions={{
             headerStyle: {
               backgroundColor: colors.background,

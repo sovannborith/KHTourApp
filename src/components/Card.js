@@ -1,23 +1,46 @@
-import React from 'react';
-import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import React, { useState, useEffect } from "react";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
-import StarRating from './StarRating';
+import StarRating from "./StarRating";
+import firebase from "firebase";
+import "firebase/auth";
+import "firebase/storage";
+import config from "../server/firebase/config/firebase";
+if (!firebase.apps.length) {
+  firebase.initializeApp(config);
+}
 
-const Card = ({itemData, onPress}) => {
+const Card = ({ itemData, onPress }) => {
+  const [imageUri, setImageUri] = useState();
+
+  useEffect(() => {
+    const subscriber = firebase
+      .storage()
+      .ref(itemData.param_01)
+      .getDownloadURL()
+      .then((url) => {
+        setImageUri(url);
+      });
+    // Unsubscribe from events when no longer in use
+    return () => subscriber;
+  }, []);
+
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.card}>
         <View style={styles.cardImgWrapper}>
           <Image
-            source={itemData.image}
+            source={{ uri: imageUri }}
             resizeMode="cover"
             style={styles.cardImg}
           />
         </View>
         <View style={styles.cardInfo}>
-          <Text style={styles.cardTitle}>{itemData.title}</Text>
+          <Text style={styles.cardTitle}>{itemData.field_desc_en}</Text>
           <StarRating ratings={itemData.ratings} reviews={itemData.reviews} />
-          <Text numberOfLines={2} style={styles.cardDetails}>{itemData.description}</Text>
+          <Text numberOfLines={2} style={styles.cardDetails}>
+            {itemData.description}
+          </Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -30,9 +53,9 @@ const styles = StyleSheet.create({
   card: {
     height: 100,
     marginVertical: 10,
-    flexDirection: 'row',
-    shadowColor: '#999',
-    shadowOffset: {width: 0, height: 1},
+    flexDirection: "row",
+    shadowColor: "#999",
+    shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
     elevation: 5,
@@ -41,9 +64,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   cardImg: {
-    height: '100%',
-    width: '100%',
-    alignSelf: 'center',
+    height: "98%",
+    width: "98%",
+    alignSelf: "center",
     borderRadius: 8,
     borderBottomRightRadius: 0,
     borderTopRightRadius: 0,
@@ -51,18 +74,18 @@ const styles = StyleSheet.create({
   cardInfo: {
     flex: 2,
     padding: 10,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     borderWidth: 1,
     borderLeftWidth: 0,
     borderBottomRightRadius: 8,
     borderTopRightRadius: 8,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   cardTitle: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   cardDetails: {
     fontSize: 12,
-    color: '#444',
+    color: "#444",
   },
 });

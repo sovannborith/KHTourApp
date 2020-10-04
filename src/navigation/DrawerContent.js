@@ -14,7 +14,6 @@ import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { AntDesign, Feather } from "@expo/vector-icons";
-//import { AuthContext } from "../components/context";
 
 export function DrawerContent(props) {
   const paperTheme = useTheme();
@@ -129,9 +128,9 @@ export function DrawerContent(props) {
           icon={({ color, size }) => (
             <Feather name="slack" size={size} color={color} />
           )}
-          label="About Us"
+          label="AboutUs"
           onPress={() => {
-            props.navigation.navigate("AboutUs");
+            props.navigation.navigate("AboutUsScreen");
           }}
         />
       </Drawer.Section>

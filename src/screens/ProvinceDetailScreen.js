@@ -1,27 +1,13 @@
 import React from "react";
-import { View, FlatList, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { data } from "../models/data";
 import Card from "../components/Card";
 
-const ProvinceDetailScreen = ({ navigation }) => {
-  const renderItem = ({ item }) => {
-    return (
-      <Card
-        itemData={item}
-        onPress={() =>
-          navigation.navigate("CardItemDetails", { itemData: item })
-        }
-      />
-    );
-  };
-
+const ProvinceDetailScreen = ({ route }) => {
+  const itemData = route.params.itemData;
   return (
     <View style={styles.container}>
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
+      <Text>{itemData.field_desc_en}</Text>
     </View>
   );
 };
