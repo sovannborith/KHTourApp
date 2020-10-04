@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   Text,
@@ -14,8 +14,34 @@ import * as Animatable from "react-native-animatable";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome, Feather } from "@expo/vector-icons";
 
+import { FirebaseContext } from "../../server/context/FirebaseContext";
+import { UserContext } from "../../server/context/UserContext";
+
 import Banner from "../../components/Banner";
+
 const SignUpScreen = ({ navigation }) => {
+  const [userName, setUserName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
+  const [loading, setLoading] = useState();
+  const [profilePhoto, setProfilePhoto] = useState();
+
+  const firebase = useContext(FirebaseContext);
+  const [_, setUser] = useContext(UserContext);
+
+  const signUp = async () => {
+    setLoading(true);
+    const user = { userName, email, password, profilePhoto };
+    try {
+      const createdUser = await firebase.createUser(user);
+
+      setUser({ ...createdUser, isLoggedIn: true });
+    } catch (error) {
+      console.log("Error @signUp: ", error);
+    }
+  };
+
   const [data, setData] = React.useState({
     username: "",
     password: "",
@@ -72,7 +98,7 @@ const SignUpScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
-        <StatusBar backgroundColor="#FF6347" barStyle="light-content" />
+        <StatusBar backgroundColor="red" barStyle="light-content" />
         <Banner horizontal={true} />
         <View style={styles.header}>
           <Text style={styles.text_header}>Sign Up Here!</Text>

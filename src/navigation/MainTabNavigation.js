@@ -22,11 +22,14 @@ import ProfileScreen from "../screens/ProfileScreen";
 import EditProfileScreen from "../screens/EditProfileScreen";
 import { PRIMARY_COLOR } from "../constants/constant";
 import ExploreScreen from "../screens/ExploreScreen";
+import SplashScreen from "../screens/SplashScreen";
+import ProvinceListScreen from "../screens/ProvinceListScreen";
 
 const HomeStack = createStackNavigator();
 const NotificationStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
 const ExploreStack = createStackNavigator();
+const ProvinceStack = createStackNavigator();
 
 const Tab = createBottomTabNavigator();
 
@@ -102,7 +105,7 @@ const MainTabNavigation = () => (
     />
     <Tab.Screen
       name="Provinces"
-      component={HomeStackScreen}
+      component={ProvinceStackScreen}
       options={{
         tabBarLabel: "Provinces",
         tabBarColor: "#694fad",
@@ -132,7 +135,7 @@ const HomeStackScreen = ({ navigation }) => {
   const { colors } = useTheme();
   return (
     <HomeStack.Navigator
-      initialRouteName="Splash"
+      initialRouteName="Home"
       screenOptions={{
         headerStyle: {
           backgroundColor: colors.background,
@@ -145,13 +148,13 @@ const HomeStackScreen = ({ navigation }) => {
         },
       }}
     >
-      <HomeStack.Screen
+      {/* <HomeStack.Screen
         name="Splash"
-        component={HomeScreen}
+        component={SplashScreen}
         options={{
           title: "Welcome to KH Tour",
         }}
-      />
+      /> */}
       <HomeStack.Screen
         name="Home"
         component={HomeScreen}
@@ -199,6 +202,35 @@ const HomeStackScreen = ({ navigation }) => {
     </HomeStack.Navigator>
   );
 };
+
+const ProvinceStackScreen = ({ navigation }) => (
+  <ProvinceStack.Navigator
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: "#1f65ff",
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        fontWeight: "bold",
+      },
+    }}
+  >
+    <ProvinceStack.Screen
+      name="ProvinceList"
+      component={ProvinceListScreen}
+      options={{
+        headerLeft: () => (
+          <Icon.Button
+            name="ios-menu"
+            size={25}
+            backgroundColor="#1f65ff"
+            onPress={() => navigation.openDrawer()}
+          />
+        ),
+      }}
+    />
+  </ProvinceStack.Navigator>
+);
 
 const NotificationStackScreen = ({ navigation }) => (
   <NotificationStack.Navigator

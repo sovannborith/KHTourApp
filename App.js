@@ -15,7 +15,7 @@ import {
   DefaultTheme as PaperDefaultTheme,
   DarkTheme as PaperDarkTheme,
 } from "react-native-paper";
-//import { LinearGradient } from "expo-linear-gradient";
+import { LinearGradient } from "expo-linear-gradient";
 
 import { DrawerContent } from "./src/navigation/DrawerContent";
 
@@ -172,34 +172,39 @@ const App = () => {
     <PaperProvider theme={theme}>
       <FirebaseProvider>
         <UserProvider>
-          <NavigationContainer theme={theme}>
-            <Drawer.Navigator
-              drawerType="slide"
-              overlayColor="transparent"
-              drawerStyle={styles.drawerStyles}
-              contentContainerStyle={{ flex: 1 }}
-              drawerContentOptions={{
-                activeBackgroundColor: "transparent",
-                activeTintColor: "white",
-                inactiveTintColor: "white",
-              }}
-              sceneContainerStyle={{ backgroundColor: "transparent" }}
-              drawerContent={(props) => {
-                setProgress(props.progress);
-                return <DrawerContent {...props} />;
-              }}
-            >
-              <Drawer.Screen name="HomeDrawer">
-                {(props) => <StackScreen {...props} style={animatedStyle} />}
-              </Drawer.Screen>
+          <LinearGradient style={{ flex: 1 }} colors={["#f5f5f5", "#fff0f0"]}>
+            <NavigationContainer theme={theme}>
+              <Drawer.Navigator
+                drawerType="slide"
+                overlayColor="transparent"
+                drawerStyle={styles.drawerStyles}
+                contentContainerStyle={{ flex: 1 }}
+                drawerContentOptions={{
+                  activeBackgroundColor: "transparent",
+                  activeTintColor: "white",
+                  inactiveTintColor: "white",
+                }}
+                sceneContainerStyle={{ backgroundColor: "transparent" }}
+                drawerContent={(props) => {
+                  setProgress(props.progress);
+                  return <DrawerContent {...props} />;
+                }}
+              >
+                <Drawer.Screen name="HomeDrawer">
+                  {(props) => <StackScreen {...props} style={animatedStyle} />}
+                </Drawer.Screen>
 
-              <Drawer.Screen name="AuthScreen">
-                {(props) => (
-                  <AuthenticationStackScreen {...props} style={animatedStyle} />
-                )}
-              </Drawer.Screen>
-            </Drawer.Navigator>
-          </NavigationContainer>
+                <Drawer.Screen name="AuthScreen">
+                  {(props) => (
+                    <AuthenticationStackScreen
+                      {...props}
+                      style={animatedStyle}
+                    />
+                  )}
+                </Drawer.Screen>
+              </Drawer.Navigator>
+            </NavigationContainer>
+          </LinearGradient>
         </UserProvider>
       </FirebaseProvider>
     </PaperProvider>

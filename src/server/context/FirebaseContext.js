@@ -31,7 +31,7 @@ const Firebase = {
 
       if (user.profilePhotoUrl) {
       }
-      delete user.passowrd;
+      //delete user.passowrd;
 
       return { ...user, profilePhotoUrl, uid };
     } catch (error) {

@@ -13,8 +13,8 @@ import {
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { AntDesign } from "@expo/vector-icons";
-import { AuthContext } from "../components/context";
+import { AntDesign, Feather } from "@expo/vector-icons";
+//import { AuthContext } from "../components/context";
 
 export function DrawerContent(props) {
   const paperTheme = useTheme();
@@ -123,6 +123,15 @@ export function DrawerContent(props) {
           label="Sign Up"
           onPress={() => {
             props.navigation.navigate("AuthScreen");
+          }}
+        />
+        <DrawerItem
+          icon={({ color, size }) => (
+            <Feather name="slack" size={size} color={color} />
+          )}
+          label="About Us"
+          onPress={() => {
+            props.navigation.navigate("AboutUs");
           }}
         />
       </Drawer.Section>
