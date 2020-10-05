@@ -14,8 +14,6 @@ import {
 import { useTheme, Avatar } from "react-native-paper";
 import { View } from "react-native-animatable";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import CardListScreen from "../screens/CardListScreen";
-import CardItemDetails from "../screens/CardItemDetails";
 import HomeScreen from "../screens/HomeScreen";
 import NotificationScreen from "../screens/NotificationScreen";
 import ProfileScreen from "../screens/ProfileScreen";

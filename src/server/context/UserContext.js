@@ -29,7 +29,14 @@ const UserProvider = ({ children }) => {
         console.log(e);
       }
     },
-    logout: async () => {
+    resetPassword: async (email) => {
+      try {
+        await firebase.auth().sendPasswordResetEmail(email);
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    signOut: async () => {
       try {
         await firebase.auth().signOut();
       } catch (e) {
@@ -37,7 +44,14 @@ const UserProvider = ({ children }) => {
       }
     },
     getCurrentUser: async () => {
-      return await firebase.auth().getCurrentUser();
+      return firebase.auth().currentUser;
+    },
+
+    isLoggedIn: async () => {
+      let user = getCurrentUser();
+      console.log(user);
+      if (user) return true;
+      else return false;
     },
 
     uploadProfilePhoto: async (uri) => {

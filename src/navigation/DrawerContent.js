@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, StyleSheet } from "react-native";
 import {
   useTheme,
@@ -20,8 +20,12 @@ export function DrawerContent(props) {
   const paperTheme = useTheme();
 
   //const { toggleTheme } = React.useContext(AuthContext);
-
+  const { getCurrentUser, signOut, isLoggedIn } = useContext(UserContext);
   const avatarSize = 100;
+  let user = getCurrentUser;
+  let isLogin = getCurrentUser;
+  const label = isLogin ? "Sign Out" : "Sign In";
+  console.log(user);
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView
@@ -120,16 +124,22 @@ export function DrawerContent(props) {
           icon={({ color, size }) => (
             <AntDesign name="login" size={size} color={color} />
           )}
-          label="Sign In"
+          label={label}
           onPress={() => {
-            props.navigation.navigate("AuthScreen");
+            if (isLogin) {
+              signOut;
+              props.navigation.navigate("Home");
+              console.log(isLoggedIn);
+            } else {
+              props.navigation.navigate("AuthScreen");
+            }
           }}
         />
         <DrawerItem
           icon={({ color, size }) => (
             <Feather name="slack" size={size} color={color} />
           )}
-          label="AboutUs"
+          label="About Us"
           onPress={() => {
             props.navigation.navigate("AboutUsScreen");
           }}
