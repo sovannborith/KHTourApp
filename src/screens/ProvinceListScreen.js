@@ -4,13 +4,6 @@ import Card from "../components/Card";
 import Loading from "../components/LoadingComponent";
 
 import { firebase } from "../server/firebase/firebase";
-/* import "firebase/auth";
-import "firebase/firestore";
-import "firebase/storage";
-import config from "../server/firebase/config/firebaseConfig";
-if (!firebase.apps.length) {
-  firebase.initializeApp(config);
-} */
 
 const ProvinceListScreen = ({ navigation }) => {
   //Manual log into firebase
@@ -63,6 +56,7 @@ const ProvinceListScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <FlatList
+        showsVerticalScrollIndicator="false"
         data={provinceList}
         renderItem={renderItem}
         keyExtractor={(item) => item.key}

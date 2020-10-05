@@ -14,6 +14,7 @@ import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { AntDesign, Feather } from "@expo/vector-icons";
+import { UserContext } from "../server/context/UserContext";
 
 export function DrawerContent(props) {
   const paperTheme = useTheme();
@@ -119,7 +120,7 @@ export function DrawerContent(props) {
           icon={({ color, size }) => (
             <AntDesign name="login" size={size} color={color} />
           )}
-          label="Sign Up"
+          label="Sign In"
           onPress={() => {
             props.navigation.navigate("AuthScreen");
           }}

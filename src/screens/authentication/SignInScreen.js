@@ -2,18 +2,17 @@ import React, { useContext, useState } from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import FormInput from "../../components/form/FormInput";
 import FormButton from "../../components/form//FormButton";
-//import { AuthContext } from "../navigation/AuthProvider";
+import { UserContext } from "../../server/context/UserContext";
 
 const SignInScreen = ({ navigation }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
-  const { login } = useContext(AuthContext);
-
+  const [loading, setLoading] = useState(false);
+  const { login } = useContext(UserContext);
   return (
     <View style={styles.container}>
       <Image source={require("../../assets/logo.png")} style={styles.logo} />
-      <Text style={styles.text}>RN Social App</Text>
+      <Text style={styles.text}>KH Tour</Text>
 
       <FormInput
         labelValue={email}
@@ -35,37 +34,36 @@ const SignInScreen = ({ navigation }) => {
 
       <FormButton
         buttonTitle="Sign In"
-        onPress={() => login(email, password)}
-      />
-
-      <TouchableOpacity style={styles.forgotButton} onPress={() => {}}>
-        <Text style={styles.navButtonText}>Forgot Password?</Text>
-      </TouchableOpacity>
-
-      <SocialButton
-        buttonTitle="Sign In with Facebook"
-        btnType="facebook"
-        color="#4867aa"
-        backgroundColor="#e6eaf4"
-        onPress={() => {}}
-      />
-
-      <SocialButton
-        buttonTitle="Sign In with Google"
-        btnType="google"
-        color="#de4d41"
-        backgroundColor="#f5e7ea"
-        onPress={() => {}}
+        loading={loading}
+        onPress={() => {
+          try {
+            setLoading(true);
+            login(email, password);
+            alert("Login successful!");
+            navigation.navigate("Home");
+          } catch (e) {
+            alert(e);
+          } finally {
+            setLoading(false);
+          }
+        }}
       />
 
       <TouchableOpacity
         style={styles.forgotButton}
-        onPress={() => navigation.navigate("Signup")}
+        onPress={() => navigation.navigate("ForgetPassword")}
+      >
+        <Text style={styles.navButtonText}>Forgot Password?</Text>
+      </TouchableOpacity>
+
+      {/* <TouchableOpacity
+        style={styles.forgotButton}
+        onPress={() => navigation.navigate("SignUp")}
       >
         <Text style={styles.navButtonText}>
           Don't have an acount? Create here
         </Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 };
@@ -86,7 +84,6 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
   },
   text: {
-    fontFamily: "Kufam-SemiBoldItalic",
     fontSize: 28,
     marginBottom: 10,
     color: "#051d5f",
@@ -101,6 +98,5 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "500",
     color: "#2e64e5",
-    fontFamily: "Lato-Regular",
   },
 });

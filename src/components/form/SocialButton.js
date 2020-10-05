@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, TouchableOpacity, View, StyleSheet } from "react-native";
-import { windowHeight, windowWidth } from "../../utils/Dimensions";
+import { windowHeight } from "../../utils/Dimensions";
 
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
@@ -59,6 +59,5 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     fontWeight: "bold",
-    fontFamily: "Lato-Regular",
   },
 });

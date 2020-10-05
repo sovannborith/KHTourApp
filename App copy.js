@@ -31,6 +31,7 @@ import HeaderLeft from "./src/components/HeaderLeft";
 //import AsyncStorage from "@react-native-community/async-storage";
 
 import { UserProvider } from "./src/server/context/UserContext";
+import { FirebaseProvider } from "./src/server/context/FirebaseContext";
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -169,38 +170,43 @@ const App = () => {
 
   return (
     <PaperProvider theme={theme}>
-      <LinearGradient style={{ flex: 1 }} colors={["#f5f5f5", "#fff0f0"]}>
+      <FirebaseProvider>
         <UserProvider>
-          <NavigationContainer theme={theme}>
-            <Drawer.Navigator
-              drawerType="slide"
-              overlayColor="transparent"
-              drawerStyle={styles.drawerStyles}
-              contentContainerStyle={{ flex: 1 }}
-              drawerContentOptions={{
-                activeBackgroundColor: "transparent",
-                activeTintColor: "white",
-                inactiveTintColor: "white",
-              }}
-              sceneContainerStyle={{ backgroundColor: "transparent" }}
-              drawerContent={(props) => {
-                setProgress(props.progress);
-                return <DrawerContent {...props} />;
-              }}
-            >
-              <Drawer.Screen name="HomeDrawer">
-                {(props) => <StackScreen {...props} style={animatedStyle} />}
-              </Drawer.Screen>
+          <LinearGradient style={{ flex: 1 }} colors={["#f5f5f5", "#fff0f0"]}>
+            <NavigationContainer theme={theme}>
+              <Drawer.Navigator
+                drawerType="slide"
+                overlayColor="transparent"
+                drawerStyle={styles.drawerStyles}
+                contentContainerStyle={{ flex: 1 }}
+                drawerContentOptions={{
+                  activeBackgroundColor: "transparent",
+                  activeTintColor: "white",
+                  inactiveTintColor: "white",
+                }}
+                sceneContainerStyle={{ backgroundColor: "transparent" }}
+                drawerContent={(props) => {
+                  setProgress(props.progress);
+                  return <DrawerContent {...props} />;
+                }}
+              >
+                <Drawer.Screen name="HomeDrawer">
+                  {(props) => <StackScreen {...props} style={animatedStyle} />}
+                </Drawer.Screen>
 
-              <Drawer.Screen name="AuthScreen">
-                {(props) => (
-                  <AuthenticationStackScreen {...props} style={animatedStyle} />
-                )}
-              </Drawer.Screen>
-            </Drawer.Navigator>
-          </NavigationContainer>
+                <Drawer.Screen name="AuthScreen">
+                  {(props) => (
+                    <AuthenticationStackScreen
+                      {...props}
+                      style={animatedStyle}
+                    />
+                  )}
+                </Drawer.Screen>
+              </Drawer.Navigator>
+            </NavigationContainer>
+          </LinearGradient>
         </UserProvider>
-      </LinearGradient>
+      </FirebaseProvider>
     </PaperProvider>
   );
 };

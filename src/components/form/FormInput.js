@@ -1,6 +1,6 @@
-import React from "react";
-import { View, TextInput, StyleSheet, useState } from "react-native";
-import { windowHeight } from "../../utils/Dimensions";
+import React, { useState } from "react";
+import { View, TextInput, StyleSheet } from "react-native";
+import { windowHeight, windowWidth } from "../../utils/Dimensions";
 
 //import {AntDesign} from 'react-native-vector-icons/AntDesign';
 import { AntDesign } from "@expo/vector-icons";
@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
     padding: 10,
     flex: 1,
     fontSize: 16,
-    fontFamily: "Lato-Regular",
     color: "#333",
     justifyContent: "center",
     alignItems: "center",
