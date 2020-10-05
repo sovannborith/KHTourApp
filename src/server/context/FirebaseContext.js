@@ -3,10 +3,11 @@ import firebase from "firebase";
 import "firebase/auth";
 import "firebase/firestore";
 
-import config from "../firebase/config/firebase";
+import config from "../firebase/config/firebaseConfig";
 if (!firebase.apps.length) {
   firebase.initializeApp(config);
 }
+
 const FirebaseContext = createContext();
 const db = firebase.firestore();
 

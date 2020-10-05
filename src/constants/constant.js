@@ -20,6 +20,19 @@ export {
   PRIMARY_BG_COLOR,
   APP_WIDTH,
 };
+
+export const colors = [
+  {
+    primary: "5eab72",
+    secondary: "",
+    danger: "#ff3355",
+    primaryBackgroundColor: "#019131",
+    secondaryBackgroundColor: "#8EC889",
+    gray: "#a3a3a3",
+    lightGray: "#dbdbdb",
+  },
+];
+
 /* Drawer Menu */
 export const alpha = Math.PI / 4;
 export const perspective = { perspective: 1000 };

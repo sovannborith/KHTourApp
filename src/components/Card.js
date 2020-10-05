@@ -5,7 +5,7 @@ import StarRating from "./StarRating";
 import firebase from "firebase";
 import "firebase/auth";
 import "firebase/storage";
-import config from "../server/firebase/config/firebase";
+import config from "../server/firebase/config/firebaseConfig";
 if (!firebase.apps.length) {
   firebase.initializeApp(config);
 }

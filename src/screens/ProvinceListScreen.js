@@ -1,16 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import { View, Text, FlatList, StyleSheet, SafeAreaView } from "react-native";
 import Card from "../components/Card";
 import Loading from "../components/LoadingComponent";
 
-import firebase from "firebase";
-import "firebase/auth";
+import { firebase } from "../server/firebase/firebase";
+/* import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
-import config from "../server/firebase/config/firebase";
+import config from "../server/firebase/config/firebaseConfig";
 if (!firebase.apps.length) {
   firebase.initializeApp(config);
-}
+} */
 
 const ProvinceListScreen = ({ navigation }) => {
   //Manual log into firebase
@@ -46,12 +46,14 @@ const ProvinceListScreen = ({ navigation }) => {
   //console.log(provinceList);
   const renderItem = ({ item }) => {
     return (
-      <Card
-        itemData={item}
-        onPress={() =>
-          navigation.navigate("ProvinceDetail", { itemData: item })
-        }
-      />
+      <SafeAreaView>
+        <Card
+          itemData={item}
+          onPress={() =>
+            navigation.navigate("ProvinceDetail", { itemData: item })
+          }
+        />
+      </SafeAreaView>
     );
   };
 

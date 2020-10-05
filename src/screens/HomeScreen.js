@@ -6,13 +6,11 @@ import {
   StyleSheet,
   StatusBar,
   ScrollView,
+  SafeAreaView,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import StarRating from "../components/StarRating";
-//import { firebase, Auth } from "../server/firebase/config/firebase";
 import Banner from "../components/Banner";
-
 const HomeScreen = ({ navigation }) => {
   const { colors } = useTheme();
 
@@ -23,118 +21,123 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1, paddingTop: 20 }}>
-      <StatusBar barStyle={theme.dark ? "light-content" : "dark-content"} />
-      <Banner horizontal={false} />
-      <ScrollView style={styles.container}>
-        <View style={styles.cardsWrapper}>
-          <Text
-            style={{
-              alignSelf: "center",
-              fontSize: 18,
-              fontWeight: "bold",
-              color: "#333",
-            }}
-          >
-            Recently Viewed
-          </Text>
-          <View style={styles.card}>
-            <View style={styles.cardImgWrapper}>
-              <Image
-                source={require("../assets/Resorts/img_00001.jpg")}
-                resizeMode="cover"
-                style={styles.cardImg}
-              />
+      <StatusBar
+        barStyle={theme.dark ? "light-content" : "dark-content"}
+        style={{ backgroundColor: "#019131" }}
+      />
+      <View style={{ flex: 1, backgroundColor: "#8EC889" }}>
+        <Banner horizontal={false} />
+        <ScrollView style={styles.container}>
+          <View style={styles.cardsWrapper}>
+            <Text
+              style={{
+                alignSelf: "flex-start",
+                fontSize: 18,
+                fontWeight: "bold",
+                color: "#333",
+              }}
+            >
+              Recently Viewed
+            </Text>
+            <View style={styles.card}>
+              <View style={styles.cardImgWrapper}>
+                <Image
+                  source={require("../assets/Resorts/img_00001.jpg")}
+                  resizeMode="cover"
+                  style={styles.cardImg}
+                />
+              </View>
+              <View style={styles.cardInfo}>
+                <Text style={styles.cardTitle}>Amazing Food Place</Text>
+                <StarRating ratings={4} reviews={99} />
+                <Text style={styles.cardDetails}>
+                  Amazing description for this amazing place
+                </Text>
+              </View>
             </View>
-            <View style={styles.cardInfo}>
-              <Text style={styles.cardTitle}>Amazing Food Place</Text>
-              <StarRating ratings={4} reviews={99} />
-              <Text style={styles.cardDetails}>
-                Amazing description for this amazing place
-              </Text>
+            <View style={styles.card}>
+              <View style={styles.cardImgWrapper}>
+                <Image
+                  source={require("../assets/Resorts/img_00002.jpg")}
+                  resizeMode="cover"
+                  style={styles.cardImg}
+                />
+              </View>
+              <View style={styles.cardInfo}>
+                <Text style={styles.cardTitle}>Amazing Food Place</Text>
+                <StarRating ratings={4} reviews={99} />
+                <Text style={styles.cardDetails}>
+                  Amazing description for this amazing place
+                </Text>
+              </View>
+            </View>
+            <View style={styles.card}>
+              <View style={styles.cardImgWrapper}>
+                <Image
+                  source={require("../assets/Resorts/img_00003.jpg")}
+                  resizeMode="cover"
+                  style={styles.cardImg}
+                />
+              </View>
+              <View style={styles.cardInfo}>
+                <Text style={styles.cardTitle}>Amazing Food Place</Text>
+                <StarRating ratings={4} reviews={99} />
+                <Text style={styles.cardDetails}>
+                  Amazing description for this amazing place
+                </Text>
+              </View>
+            </View>
+            <View style={styles.card}>
+              <View style={styles.cardImgWrapper}>
+                <Image
+                  source={require("../assets/Resorts/img_00004.jpg")}
+                  resizeMode="cover"
+                  style={styles.cardImg}
+                />
+              </View>
+              <View style={styles.cardInfo}>
+                <Text style={styles.cardTitle}>Amazing Food Place</Text>
+                <StarRating ratings={4} reviews={99} />
+                <Text style={styles.cardDetails}>
+                  Amazing description for this amazing place
+                </Text>
+              </View>
+            </View>
+            <View style={styles.card}>
+              <View style={styles.cardImgWrapper}>
+                <Image
+                  source={require("../assets/Resorts/img_00005.jpg")}
+                  resizeMode="cover"
+                  style={styles.cardImg}
+                />
+              </View>
+              <View style={styles.cardInfo}>
+                <Text style={styles.cardTitle}>Amazing Food Place</Text>
+                <StarRating ratings={4} reviews={99} />
+                <Text style={styles.cardDetails}>
+                  Amazing description for this amazing place
+                </Text>
+              </View>
+            </View>
+            <View style={styles.card}>
+              <View style={styles.cardImgWrapper}>
+                <Image
+                  source={require("../assets/Resorts/img_00006.jpg")}
+                  resizeMode="cover"
+                  style={styles.cardImg}
+                />
+              </View>
+              <View style={styles.cardInfo}>
+                <Text style={styles.cardTitle}>Amazing Food Place</Text>
+                <StarRating ratings={4} reviews={99} />
+                <Text style={styles.cardDetails}>
+                  Amazing description for this amazing place
+                </Text>
+              </View>
             </View>
           </View>
-          <View style={styles.card}>
-            <View style={styles.cardImgWrapper}>
-              <Image
-                source={require("../assets/Resorts/img_00002.jpg")}
-                resizeMode="cover"
-                style={styles.cardImg}
-              />
-            </View>
-            <View style={styles.cardInfo}>
-              <Text style={styles.cardTitle}>Amazing Food Place</Text>
-              <StarRating ratings={4} reviews={99} />
-              <Text style={styles.cardDetails}>
-                Amazing description for this amazing place
-              </Text>
-            </View>
-          </View>
-          <View style={styles.card}>
-            <View style={styles.cardImgWrapper}>
-              <Image
-                source={require("../assets/Resorts/img_00003.jpg")}
-                resizeMode="cover"
-                style={styles.cardImg}
-              />
-            </View>
-            <View style={styles.cardInfo}>
-              <Text style={styles.cardTitle}>Amazing Food Place</Text>
-              <StarRating ratings={4} reviews={99} />
-              <Text style={styles.cardDetails}>
-                Amazing description for this amazing place
-              </Text>
-            </View>
-          </View>
-          <View style={styles.card}>
-            <View style={styles.cardImgWrapper}>
-              <Image
-                source={require("../assets/Resorts/img_00004.jpg")}
-                resizeMode="cover"
-                style={styles.cardImg}
-              />
-            </View>
-            <View style={styles.cardInfo}>
-              <Text style={styles.cardTitle}>Amazing Food Place</Text>
-              <StarRating ratings={4} reviews={99} />
-              <Text style={styles.cardDetails}>
-                Amazing description for this amazing place
-              </Text>
-            </View>
-          </View>
-          <View style={styles.card}>
-            <View style={styles.cardImgWrapper}>
-              <Image
-                source={require("../assets/Resorts/img_00005.jpg")}
-                resizeMode="cover"
-                style={styles.cardImg}
-              />
-            </View>
-            <View style={styles.cardInfo}>
-              <Text style={styles.cardTitle}>Amazing Food Place</Text>
-              <StarRating ratings={4} reviews={99} />
-              <Text style={styles.cardDetails}>
-                Amazing description for this amazing place
-              </Text>
-            </View>
-          </View>
-          <View style={styles.card}>
-            <View style={styles.cardImgWrapper}>
-              <Image
-                source={require("../assets/Resorts/img_00006.jpg")}
-                resizeMode="cover"
-                style={styles.cardImg}
-              />
-            </View>
-            <View style={styles.cardInfo}>
-              <Text style={styles.cardTitle}>Amazing Food Place</Text>
-              <StarRating ratings={4} reviews={99} />
-              <Text style={styles.cardDetails}>
-                Amazing description for this amazing place
-              </Text>
-            </View>
-          </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };
