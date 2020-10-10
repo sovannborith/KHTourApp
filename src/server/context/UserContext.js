@@ -2,7 +2,6 @@ import React, { createContext, useState } from "react";
 import { firebase } from "../firebase/firebase";
 
 const UserContext = createContext([{}, () => {}]);
-
 const db = firebase.firestore();
 
 const UserProvider = ({ children }) => {
@@ -39,6 +38,7 @@ const UserProvider = ({ children }) => {
     signOut: async () => {
       try {
         await firebase.auth().signOut();
+        setUser(null);
       } catch (e) {
         console.log(e);
       }
@@ -48,10 +48,8 @@ const UserProvider = ({ children }) => {
     },
 
     isLoggedIn: async () => {
-      let user = getCurrentUser();
-      console.log(user);
-      if (user) return true;
-      else return false;
+      let user = UserFirebase.getCurrentUser();
+      return user;
     },
 
     uploadProfilePhoto: async (uri) => {

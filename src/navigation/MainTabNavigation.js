@@ -15,7 +15,6 @@ import { useTheme, Avatar } from "react-native-paper";
 import { View } from "react-native-animatable";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import HomeScreen from "../screens/HomeScreen";
-import NotificationScreen from "../screens/NotificationScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import EditProfileScreen from "../screens/EditProfileScreen";
 import { PRIMARY_COLOR } from "../constants/constant";
@@ -23,10 +22,8 @@ import ExploreScreen from "../screens/ExploreScreen";
 import SplashScreen from "../screens/SplashScreen";
 import ProvinceListScreen from "../screens/ProvinceListScreen";
 import ProvinceDetailScreen from "../screens/ProvinceDetailScreen";
-import AboutUsScreen from "../screens/AboutUsScreen";
 
 const HomeStack = createStackNavigator();
-const NotificationStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
 const ExploreStack = createStackNavigator();
 const ProvinceStack = createStackNavigator();
@@ -238,35 +235,6 @@ const ProvinceStackScreen = ({ navigation }) => (
       }}
     />
   </ProvinceStack.Navigator>
-);
-
-const NotificationStackScreen = ({ navigation }) => (
-  <NotificationStack.Navigator
-    screenOptions={{
-      headerStyle: {
-        backgroundColor: "#1f65ff",
-      },
-      headerTintColor: "#fff",
-      headerTitleStyle: {
-        fontWeight: "bold",
-      },
-    }}
-  >
-    <NotificationStack.Screen
-      name="Notifications"
-      component={NotificationScreen}
-      options={{
-        headerLeft: () => (
-          <Icon.Button
-            name="ios-menu"
-            size={25}
-            backgroundColor="#1f65ff"
-            onPress={() => navigation.openDrawer()}
-          />
-        ),
-      }}
-    />
-  </NotificationStack.Navigator>
 );
 
 const ExploreStackScreen = ({ navigation }) => (

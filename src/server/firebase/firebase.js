@@ -6,5 +6,4 @@ import config from "./config/firebaseConfig";
 if (!firebase.apps.length) {
   firebase.initializeApp(config);
 }
-
 export { firebase };

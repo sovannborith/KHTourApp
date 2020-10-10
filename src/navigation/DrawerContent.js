@@ -14,18 +14,24 @@ import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { AntDesign, Feather } from "@expo/vector-icons";
+import { firebase } from "../../src/server/firebase/firebase";
 import { UserContext } from "../server/context/UserContext";
 
 export function DrawerContent(props) {
   const paperTheme = useTheme();
 
-  //const { toggleTheme } = React.useContext(AuthContext);
-  const { getCurrentUser, signOut, isLoggedIn } = useContext(UserContext);
+  const { user, signOut } = useContext(UserContext);
   const avatarSize = 100;
-  let user = getCurrentUser;
-  let isLogin = getCurrentUser;
-  const label = isLogin ? "Sign Out" : "Sign In";
-  console.log(user);
+
+  const handleLogPress = (user) => {
+    if (user) {
+      firebase.auth().signOut();
+      props.navigation.navigate("Home");
+    } else {
+      props.navigation.navigate("AuthScreen");
+    }
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView
@@ -122,17 +128,15 @@ export function DrawerContent(props) {
       <Drawer.Section style={styles.bottomDrawerSection}>
         <DrawerItem
           icon={({ color, size }) => (
-            <AntDesign name="login" size={size} color={color} />
+            <AntDesign
+              name={user ? "logout" : "login"}
+              size={size}
+              color={color}
+            />
           )}
-          label={label}
+          label={user ? "Sign Out" : "Sign In"}
           onPress={() => {
-            if (isLogin) {
-              signOut;
-              props.navigation.navigate("Home");
-              console.log(isLoggedIn);
-            } else {
-              props.navigation.navigate("AuthScreen");
-            }
+            handleLogPress(user);
           }}
         />
         <DrawerItem
