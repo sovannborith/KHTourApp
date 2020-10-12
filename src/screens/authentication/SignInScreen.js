@@ -12,7 +12,7 @@ const SignInScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Image source={require("../../assets/logo.png")} style={styles.logo} />
-      <Text style={styles.text}>KH Tour</Text>
+      <Text style={styles.text}>KH Tour App</Text>
 
       <FormInput
         labelValue={email}
@@ -55,15 +55,6 @@ const SignInScreen = ({ navigation }) => {
       >
         <Text style={styles.navButtonText}>Forgot Password?</Text>
       </TouchableOpacity>
-
-      {/* <TouchableOpacity
-        style={styles.forgotButton}
-        onPress={() => navigation.navigate("SignUp")}
-      >
-        <Text style={styles.navButtonText}>
-          Don't have an acount? Create here
-        </Text>
-      </TouchableOpacity> */}
     </View>
   );
 };
@@ -74,7 +65,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#f9fafd",
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
     padding: 20,
   },

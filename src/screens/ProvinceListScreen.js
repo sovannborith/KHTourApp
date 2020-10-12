@@ -4,13 +4,13 @@ import Card from "../components/Card";
 import Loading from "../components/LoadingComponent";
 
 import { firebase } from "../server/firebase/firebase";
-
+import { UserContext } from "../server/context/UserContext";
 const ProvinceListScreen = ({ navigation }) => {
   //Manual log into firebase
-  firebase
+  /* firebase
     .auth()
-    .signInWithEmailAndPassword("yun.sovannborith@gmail.com", "Rith_07081984");
-
+    .signInWithEmailAndPassword("yun.sovannborith@gmail.com", "Rith_07081984"); */
+  const { user } = useContext(UserContext);
   const [provinceList, setProvinceList] = useState();
   const [loading, setLoading] = useState(true);
   const countryCode = "fld_002";

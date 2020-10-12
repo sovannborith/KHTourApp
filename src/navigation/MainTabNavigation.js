@@ -1,5 +1,4 @@
 import React from "react";
-
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import AnimatedTabBar, { TabsConfigsType } from "curved-bottom-navigation-bar";
@@ -27,6 +26,8 @@ const HomeStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
 const ExploreStack = createStackNavigator();
 const ProvinceStack = createStackNavigator();
+
+
 
 const Tab = createBottomTabNavigator();
 
@@ -65,6 +66,7 @@ const tabs = {
 
 const MainTabNavigation = () => (
   <Tab.Navigator
+    initialRouteName="Home"
     tabBar={(props) => (
       <AnimatedTabBar
         dotColor={"#f54ece"}
@@ -77,7 +79,7 @@ const MainTabNavigation = () => (
   >
     <Tab.Screen
       name="Home"
-      component={HomeStackScreen}
+      component={HomeScreen}
       options={{
         tabBarLabel: "Home",
         tabBarColor: "#FF6347",
@@ -128,7 +130,7 @@ const MainTabNavigation = () => (
   </Tab.Navigator>
 );
 
-const HomeStackScreen = ({ navigation }) => {
+const HomeStackScreen = ({ navigation, style }) => {
   const { colors } = useTheme();
   return (
     <HomeStack.Navigator

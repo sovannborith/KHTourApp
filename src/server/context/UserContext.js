@@ -5,6 +5,7 @@ const UserContext = createContext([{}, () => {}]);
 const db = firebase.firestore();
 
 const UserProvider = ({ children }) => {
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [user, setUser] = useState(null);
   const userFirebase = {
     user,
@@ -47,11 +48,6 @@ const UserProvider = ({ children }) => {
       return firebase.auth().currentUser;
     },
 
-    isLoggedIn: async () => {
-      let user = UserFirebase.getCurrentUser();
-      return user;
-    },
-
     uploadProfilePhoto: async (uri) => {
       const uid = getCurrentUser().uid;
       try {
@@ -86,6 +82,9 @@ const UserProvider = ({ children }) => {
         xhr.open("GET", url, true);
         xhr.send(null);
       });
+    },
+    toggleTheme: () => {
+      setIsDarkTheme((isDarkTheme) => !isDarkTheme);
     },
   };
   return (

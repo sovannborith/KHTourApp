@@ -31,7 +31,6 @@ import HeaderLeft from "../../src/components/HeaderLeft";
 import AboutUsScreen from "../screens/AboutUsScreen";
 
 const Drawer = createDrawerNavigator();
-const Stack = createStackNavigator();
 
 const AppStack = () => {
   // -- Animated screen
@@ -50,8 +49,8 @@ const AppStack = () => {
     borderRadius,
     transform: [{ scale }],
     shadowColor: "grey",
-    shadowRadius: 3,
-    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 20,
+    shadowOffset: { width: 0, height: 20 },
     elevation: 5,
   };
 
@@ -82,6 +81,60 @@ const AppStack = () => {
   const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
 
   const AuthStack = createStackNavigator();
+  const MainStack = createStackNavigator();
+
+  const MainStackScreen = ({ navigation, style }) => {
+    const { colors } = useTheme();
+
+    return (
+      <Animated.View style={StyleSheet.flatten([styles.stack, style])}>
+        <MainStack.Navigator
+          initialRouteName="Home"
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: colors.background,
+              shadowColor: colors.background, // iOS
+              elevation: 0, // Android
+            },
+            headerTintColor: colors.text,
+            headerLeft: () => (
+              <HeaderLeft onPress={() => navigation.openDrawer()} />
+            ),
+          }}
+        >
+          <MainStack.Screen
+            name="Home"
+            options={{
+              title: "",
+              headerBackTitle: null,
+              headerBackTitleVisible: false,
+            }}
+            component={MainTabNavigation}
+          />
+          <MainStack.Screen name="SupportScreen">
+            {(props) => (
+              <SupportScreen {...props} style={animatedStyle} />
+            )}
+          </MainStack.Screen>
+          <MainStack.Screen name="SettingsScreen">
+            {(props) => (
+              <SettingsScreen {...props} style={animatedStyle} />
+            )}
+          </MainStack.Screen>
+          <MainStack.Screen name="BookmarkScreen">
+            {(props) => (
+              <BookmarkScreen {...props} style={animatedStyle} />
+            )}
+          </MainStack.Screen>
+          <MainStack.Screen name="AboutUsScreen">
+            {(props) => (
+              <AboutUsScreen {...props} style={animatedStyle} />
+            )}
+          </MainStack.Screen>
+        </MainStack.Navigator>
+      </Animated.View>
+    );
+  };
 
   const AuthenticationStackScreen = ({ navigation, style }) => {
     const { colors } = useTheme();
@@ -135,44 +188,12 @@ const AppStack = () => {
     );
   };
 
-  const StackScreen = ({ navigation, style }) => {
-    return (
-      <Animated.View style={StyleSheet.flatten([styles.stack, style])}>
-        <Stack.Navigator
-          screenOptions={{
-            headerTransparent: true,
-            headerTitle: null,
-            backgroundColor: "#246b6b",
-            headerLeft: () => (
-              <HeaderLeft onPress={() => navigation.openDrawer()} />
-            ),
-          }}
-        >
-          <Stack.Screen name="Home">
-            {(props) => <MainTabNavigation {...props} />}
-          </Stack.Screen>
-          <Stack.Screen name="SupportScreen">
-            {(props) => <SupportScreen {...props} />}
-          </Stack.Screen>
-          <Stack.Screen name="SettingsScreen">
-            {(props) => <SettingsScreen {...props} />}
-          </Stack.Screen>
-          <Stack.Screen name="BookmarkScreen">
-            {(props) => <BookmarkScreen {...props} />}
-          </Stack.Screen>
-          <Stack.Screen name="AboutUsScreen">
-            {(props) => <AboutUsScreen {...props} />}
-          </Stack.Screen>
-        </Stack.Navigator>
-      </Animated.View>
-    );
-  };
-
   return (
     <PaperProvider theme={theme}>
       <LinearGradient style={{ flex: 1 }} colors={["#f5f5f5", "#fff0f0"]}>
         <NavigationContainer theme={theme}>
-          <Drawer.Navigator
+        <Animated.View style={styles.stack}>
+        <Drawer.Navigator
             drawerType="slide"
             overlayColor="transparent"
             drawerStyle={styles.drawerStyles}
@@ -181,23 +202,27 @@ const AppStack = () => {
               activeBackgroundColor: "transparent",
               activeTintColor: "white",
               inactiveTintColor: "white",
+              
             }}
             sceneContainerStyle={{ backgroundColor: "transparent" }}
             drawerContent={(props) => {
               setProgress(props.progress);
               return <DrawerContent {...props} />;
             }}
-          >
+          >            
             <Drawer.Screen name="HomeDrawer">
-              {(props) => <StackScreen {...props} style={animatedStyle} />}
+              {(props) => (
+                <MainStackScreen {...props} style={animatedStyle} />
+              )}
             </Drawer.Screen>
-
+            
             <Drawer.Screen name="AuthScreen">
               {(props) => (
                 <AuthenticationStackScreen {...props} style={animatedStyle} />
               )}
             </Drawer.Screen>
           </Drawer.Navigator>
+      </Animated.View>
         </NavigationContainer>
       </LinearGradient>
     </PaperProvider>

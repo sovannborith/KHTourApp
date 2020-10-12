@@ -16,9 +16,6 @@ const HomeScreen = ({ navigation }) => {
 
   const theme = useTheme();
 
-  //firebase.auth().signInWithEmailAndPassword();
-  //var user = firebase.auth().currentUser;
-
   return (
     <SafeAreaView style={{ flex: 1, paddingTop: 20 }}>
       <StatusBar
@@ -27,7 +24,10 @@ const HomeScreen = ({ navigation }) => {
       />
       <View style={{ flex: 1, backgroundColor: "#8EC889" }}>
         <Banner horizontal={false} />
-        <ScrollView style={styles.container}>
+        <ScrollView
+          style={styles.container}
+          showsVerticalScrollIndicator="false"
+        >
           <View style={styles.cardsWrapper}>
             <Text
               style={{
