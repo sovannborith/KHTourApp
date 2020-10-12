@@ -145,6 +145,7 @@ const AppStack = () => {
           initialRouteName="SignIn"
           screenOptions={{
             headerStyle: {
+              title: "",
               backgroundColor: colors.background,
               shadowColor: colors.background, // iOS
               elevation: 0, // Android
@@ -158,7 +159,7 @@ const AppStack = () => {
           <AuthStack.Screen
             name="SignUp"
             options={{
-              title: "Sign Up",
+              //title: "Sign Up",
               headerBackTitle: null,
               headerBackTitleVisible: false,
             }}
@@ -168,7 +169,7 @@ const AppStack = () => {
             name="SignIn"
             component={SignInScreen}
             options={{
-              title: "Sign In",
+              //title: "Sign In",
               headerBackTitle: null,
               headerBackTitleVisible: false,
             }}

@@ -2,8 +2,9 @@ import React from "react";
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import { windowHeight } from "../../utils/Dimensions";
 import Loading from "../LoadingComponent";
+const FormButton = ({ buttonTitle,  loading, ...rest }) => {
 
-const FormButton = ({ buttonTitle, loading, ...rest }) => {
+  
   return (
     <TouchableOpacity style={styles.buttonContainer} {...rest}>
       {loading ? (
@@ -21,16 +22,15 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: 10,
     width: "100%",
-    height: windowHeight / 15,
-    backgroundColor: "#2e64e5",
+    height: 50,
+    backgroundColor: "#246b6b",
     padding: 10,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 3,
+    borderRadius: 25,
   },
   buttonText: {
-    fontSize: 18,
-    fontWeight: "bold",
+    fontSize: 16,
     color: "#ffffff",
   },
 });

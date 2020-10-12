@@ -16,17 +16,21 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import EditProfileScreen from "../screens/EditProfileScreen";
+import ResortDetailScreen from "../screens/ResortDetailScreen";
 import { PRIMARY_COLOR } from "../constants/constant";
 import ExploreScreen from "../screens/ExploreScreen";
 import SplashScreen from "../screens/SplashScreen";
 import ProvinceListScreen from "../screens/ProvinceListScreen";
 import ProvinceDetailScreen from "../screens/ProvinceDetailScreen";
+import ResortListScreen from "../screens/ResortListScreen";
+import HotelListScreen from "../screens/HotelListScreen";
+import HotelDetailScreen from "../screens/HotelDetailScreen";
 
 const HomeStack = createStackNavigator();
-const ProfileStack = createStackNavigator();
+const ResortStack = createStackNavigator();
 const ExploreStack = createStackNavigator();
 const ProvinceStack = createStackNavigator();
-
+const HotelStack = createStackNavigator();
 
 
 const Tab = createBottomTabNavigator();
@@ -88,7 +92,7 @@ const MainTabNavigation = () => (
 
     <Tab.Screen
       name="Resorts"
-      component={ProfileStackScreen}
+      component={ResortStackScreen}
       options={{
         tabBarLabel: "Resorts",
         tabBarColor: "#694fad",
@@ -96,7 +100,7 @@ const MainTabNavigation = () => (
     />
     <Tab.Screen
       name="Hotels"
-      component={ExploreStackScreen}
+      component={HotelStackScreen}
       options={{
         tabBarLabel: "Hotels",
         tabBarColor: "#694fad",
@@ -268,11 +272,11 @@ const ExploreStackScreen = ({ navigation }) => (
   </ExploreStack.Navigator>
 );
 
-const ProfileStackScreen = ({ navigation }) => {
+const ResortStackScreen = ({ navigation }) => {
   const { colors } = useTheme();
 
   return (
-    <ProfileStack.Navigator
+    <ResortStack.Navigator
       screenOptions={{
         headerStyle: {
           backgroundColor: colors.background,
@@ -282,9 +286,9 @@ const ProfileStackScreen = ({ navigation }) => {
         headerTintColor: colors.text,
       }}
     >
-      <ProfileStack.Screen
-        name="Profile"
-        component={ProfileScreen}
+      <ResortStack.Screen
+        name="Resorts"
+        component={ResortListScreen}
         options={{
           title: "",
           headerLeft: () => (
@@ -311,16 +315,74 @@ const ProfileStackScreen = ({ navigation }) => {
           ),
         }}
       />
-      <ProfileStack.Screen
-        name="EditProfile"
+      <ResortStack.Screen
+        name="ResortDetail"
         options={{
-          title: "Edit Profile",
+          title: "Resort Details",
           headerBackTitle: null,
           headerBackTitleVisible: false,
         }}
-        component={EditProfileScreen}
+        component={ResortDetailScreen}
       />
-    </ProfileStack.Navigator>
+    </ResortStack.Navigator>
+  );
+};
+
+const HotelStackScreen = ({ navigation }) => {
+  const { colors } = useTheme();
+
+  return (
+    <HotelStack.Navigator
+      initialRouteName="Hotels"
+      screenOptions={{
+          
+        headerStyle: {
+          backgroundColor: colors.background,
+          shadowColor: colors.background, // iOS
+          elevation: 0, // Android
+        },
+        headerTintColor: colors.text,
+      }}
+    >
+      <HotelStack.Screen
+        name="Hotels"
+        component={HotelListScreen}
+        options={{
+          title: "Hotel List",
+          headerLeft: () => (
+            <View style={{ marginLeft: 10 }}>
+              <Icon.Button
+                name="ios-menu"
+                size={25}
+                backgroundColor={colors.background}
+                color={colors.text}
+                onPress={() => navigation.openDrawer()}
+              />
+            </View>
+          ),
+          headerRight: () => (
+            <View style={{ marginRight: 10 }}>
+              <MaterialCommunityIcons.Button
+                name="account-edit"
+                size={25}
+                backgroundColor={colors.background}
+                color={colors.text}
+                onPress={() => navigation.navigate("EditProfile")}
+              />
+            </View>
+          ),
+        }}
+      />
+      <HotelStack.Screen
+        name="HotelDetail"
+        options={{
+          title: "Hotel Details",
+          headerBackTitle: null,
+          headerBackTitleVisible: false,
+        }}
+        component={HotelDetailScreen}
+      />
+    </HotelStack.Navigator>
   );
 };
 

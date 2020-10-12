@@ -1,16 +1,11 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState,  useEffect } from "react";
 import { View, Text, FlatList, StyleSheet, SafeAreaView } from "react-native";
 import Card from "../components/Card";
 import Loading from "../components/LoadingComponent";
 
 import { firebase } from "../server/firebase/firebase";
-import { UserContext } from "../server/context/UserContext";
 const ProvinceListScreen = ({ navigation }) => {
-  //Manual log into firebase
-  /* firebase
-    .auth()
-    .signInWithEmailAndPassword("yun.sovannborith@gmail.com", "Rith_07081984"); */
-  const { user } = useContext(UserContext);
+  
   const [provinceList, setProvinceList] = useState();
   const [loading, setLoading] = useState(true);
   const countryCode = "fld_002";
@@ -55,12 +50,14 @@ const ProvinceListScreen = ({ navigation }) => {
   }
   return (
     <View style={styles.container}>
+      <View style={styles.body}>
       <FlatList
         showsVerticalScrollIndicator="false"
         data={provinceList}
         renderItem={renderItem}
         keyExtractor={(item) => item.key}
       />
+    </View>
     </View>
   );
 };
@@ -69,6 +66,10 @@ export default ProvinceListScreen;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    backgroundColor:"#c6ecec"
+  },
+  body: {
     flex: 1,
     width: "90%",
     alignSelf: "center",

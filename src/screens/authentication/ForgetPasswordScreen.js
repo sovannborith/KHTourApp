@@ -11,7 +11,7 @@ const ForgetPasswordScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Image source={require("../../assets/logo.png")} style={styles.logo} />
-      <Text style={styles.text}>KH Tour App</Text>
+      <Text style={styles.text}>Reset Password</Text>
 
       <FormInput
         labelValue={email}
@@ -54,7 +54,7 @@ export default ForgetPasswordScreen;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#f9fafd",
+    backgroundColor: "#ffffff",
     flex: 1,
     alignItems: "center",
     padding: 20,
@@ -67,17 +67,25 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 28,
     marginBottom: 10,
-    color: "#051d5f",
+    color: "#246b6b",
+    fontWeight: "bold"
   },
   navButton: {
     marginTop: 15,
   },
   forgotButton: {
-    marginVertical: 35,
+    marginTop: 10,
+    width: "100%",
+    height: 50,    
+    padding: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 25,
+    borderWidth: 1,
+    borderColor: "#246b6b",
   },
   navButtonText: {
-    fontSize: 18,
-    fontWeight: "500",
-    color: "#2e64e5",
+    fontSize: 16,
+    color: "#246b6b",
   },
 });
