@@ -62,7 +62,7 @@ const AppStack = () => {
     colors: {
       ...NavigationDefaultTheme.colors,
       ...PaperDefaultTheme.colors,
-      background: "#ffffff",
+      background: "#246b6b",
       text: "#333333",
     },
   };
@@ -96,16 +96,16 @@ const AppStack = () => {
               shadowColor: colors.background, // iOS
               elevation: 0, // Android
             },
-            headerTintColor: colors.text,
+            headerTintColor: "white",// colors.text,
             headerLeft: () => (
               <HeaderLeft onPress={() => navigation.openDrawer()} />
             ),
           }}
         >
           <MainStack.Screen
-            name="Home"
+            name="MainRoot"
             options={{
-              title: "",
+              title: "",              
               headerBackTitle: null,
               headerBackTitleVisible: false,
             }}

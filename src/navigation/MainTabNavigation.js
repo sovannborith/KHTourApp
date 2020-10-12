@@ -79,7 +79,7 @@ const MainTabNavigation = () => (
   >
     <Tab.Screen
       name="Home"
-      component={HomeScreen}
+      component={HomeStackScreen}
       options={{
         tabBarLabel: "Home",
         tabBarColor: "#FF6347",

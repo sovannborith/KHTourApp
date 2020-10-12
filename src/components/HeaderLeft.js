@@ -14,7 +14,7 @@ export default HeaderLeft;
 
 const styles = StyleSheet.create({
   menuOuter: {
-    top: -17,
+    
     marginLeft: 20,
     backgroundColor: "#ffffff",
     borderWidth: 1,

@@ -14,19 +14,18 @@ import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { AntDesign, Feather } from "@expo/vector-icons";
-import { firebase } from "../../src/server/firebase/firebase";
 import { UserContext } from "../server/context/UserContext";
 
 export function DrawerContent(props) {
   const paperTheme = useTheme();
 
-  const { user, signOut } = useContext(UserContext);
+  const { user, signOut, toggleTheme } = useContext(UserContext);
   const avatarSize = 100;
 
   const handleLogPress = (user) => {
     if (user) {
-      firebase.auth().signOut();
-      props.navigation.navigate("Home");
+      signOut();
+      props.navigation.navigate("Home", {screen: "Home"});
     } else {
       props.navigation.navigate("AuthScreen");
     }
@@ -109,10 +108,10 @@ export function DrawerContent(props) {
               }}
             />
           </Drawer.Section>
-          <Drawer.Section title="Preferences">
+          {/* <Drawer.Section title="Preferences">
             <TouchableRipple
               onPress={() => {
-                //toggleTheme();
+                toggleTheme();
               }}
             >
               <View style={styles.preference}>
@@ -122,7 +121,7 @@ export function DrawerContent(props) {
                 </View>
               </View>
             </TouchableRipple>
-          </Drawer.Section>
+          </Drawer.Section> */}
         </View>
       </DrawerContentScrollView>
       <Drawer.Section style={styles.bottomDrawerSection}>
