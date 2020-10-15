@@ -14,7 +14,7 @@ const FormInput = ({ labelValue, placeholderText, iconType, touched, error, auto
       marginBottom: 10,
       width: "100%",
       height: 50,
-      borderColor: !touched ? "#000000" : !error? "#246b6b":"#d10000",
+      borderColor: !touched ? "#878787" : !error? "#246b6b":"#d10000",
       borderRadius: 3,
       borderWidth: 1,
       flexDirection: "row",
@@ -27,9 +27,9 @@ const FormInput = ({ labelValue, placeholderText, iconType, touched, error, auto
         justifyContent: "center",
         alignItems: "center",
         width: 50,
-        color: !touched ? "#000000" : !error? "#246b6b":"#d10000",
+        color: !touched ? "#878787" : !error? "#246b6b":"#d10000",
       }}>
-        <AntDesign name={iconType} size={25} color={!touched ? "#000000" : !error? "#246b6b":"#d10000"} />
+        <AntDesign name={iconType} size={25} color={!touched ? "#878787" : !error? "#246b6b":"#d10000"} />
       </View>
       <TextInput
         value={labelValue}
@@ -37,7 +37,7 @@ const FormInput = ({ labelValue, placeholderText, iconType, touched, error, auto
           padding: 10,
           flex: 1,
           fontSize: 16,
-          color:!touched ? "#000000" : !error? "#246b6b":"#d10000",
+          color:!touched ? "#878787" : !error? "#246b6b":"#d10000",
           justifyContent: "center",
           alignItems: "center",
         }}

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
-import { Formik} from 'formik';
+import { Formik, useFormik} from 'formik';
  import * as Yup from 'yup';
 
 import FormInput from "../../components/form/FormInput";
@@ -17,6 +17,7 @@ const SignInScreen = ({ navigation }) => {
   const signIn =(email, password) =>{    
       try {
         setLoading(true);
+        if(!isValid) return;
         login(email, password);
         alert("Login successful!");
         navigation.navigate("Home");
@@ -32,22 +33,17 @@ const SignInScreen = ({ navigation }) => {
     password: Yup.string().required(),
   }); 
 
-  /* const {handleChange, handleBlur, handleSubmit, values, touched, errors, isValid} = useFormik({
+  const {handleChange, handleBlur, handleSubmit, values, touched, errors, isValid} = useFormik({
     validationSchema: SignInSchema,
     initialValues:{ email: '', password: '' },
-    onSubmit: (values) => Alert.alert(JSON.stringify(values))
-  }); */
+    onSubmit: () => {signIn()}
+  });
 
   return (
     <View style={styles.container}>
       <Image source={require("../../assets/logo.png")} style={styles.logo} />
       <Text style={styles.text}>Sign In</Text>
-        <Formik
-          validationSchema= {SignInSchema}
-          initialValues={{ email: '', password: '' }}
-          onSubmit={values => console.log(JSON.stringify(values))}
-        >
-        {({ values, handleChange, touched, errors,  handleSubmit, handleBlur }) => (
+        
           <View style={{width: "100%"}}>
             <FormInput
               labelValue={values.email}
@@ -89,8 +85,6 @@ const SignInScreen = ({ navigation }) => {
             <Text style={styles.navButtonText}>Forgot Password?</Text>
           </TouchableOpacity>
           </View>
-        )}
-        </Formik>
     </View>
   );
 };
