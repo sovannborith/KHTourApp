@@ -145,7 +145,6 @@ const AppStack = () => {
           initialRouteName="SignIn"
           screenOptions={{
             headerStyle: {
-              title: "",
               backgroundColor: colors.background,
               shadowColor: colors.background, // iOS
               elevation: 0, // Android
@@ -169,7 +168,7 @@ const AppStack = () => {
             name="SignIn"
             component={SignInScreen}
             options={{
-              //title: "Sign In",
+              title: "Sign In",
               headerBackTitle: null,
               headerBackTitleVisible: false,
             }}

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
+//import { useTheme } from "react-native-paper";
+
 import { windowHeight, windowWidth } from "../../utils/Dimensions";
 
-//import {AntDesign} from 'react-native-vector-icons/AntDesign';
 import { AntDesign } from "@expo/vector-icons";
 
-const FormInput = ({ labelValue, placeholderText, iconType, ...rest }) => {
-  const [valid, setValid] = useState(null);
+const FormInput = ({ labelValue, placeholderText, iconType, touched, error, ...rest }) => {
+  
+  const errorBackgroundColor = !error ? "blue":"red";
   return (
     <View style={styles.inputContainer}>
       <View style={styles.iconStyle}>
@@ -21,8 +23,20 @@ const FormInput = ({ labelValue, placeholderText, iconType, ...rest }) => {
         underlineColorAndroid="transparent"
         {...rest}
       />
+      {touched && (
+        <View style={{height:20,
+        width: 20,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: "center",
+        backgroundColor:{errorBackgroundColor},
+        right: 10}} >        
+        <AntDesign name ={!error ? "check" : "close"} size={16} color="white" style={{textAlign: "center"}}/>
+      </View>
+      )}
+    
     </View>
-  );
+  )
 };
 
 export default FormInput;
@@ -45,8 +59,8 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
-    borderRightColor: "#ccc",
-    borderRightWidth: 1,
+    //borderRightColor: "#ccc",
+    //borderRightWidth: 1,
     width: 50,
   },
   input: {
