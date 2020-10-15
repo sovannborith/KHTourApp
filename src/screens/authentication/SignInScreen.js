@@ -60,6 +60,7 @@ const SignInScreen = ({ navigation }) => {
               autoCorrect={false}
               error ={errors.email}
               touched={touched.email}
+              autoFocus={true}
             />
 
             <FormInput
