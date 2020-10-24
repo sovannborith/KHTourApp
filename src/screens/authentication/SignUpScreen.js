@@ -16,16 +16,11 @@ import { FontAwesome, Feather } from "@expo/vector-icons";
 
 import { FirebaseContext } from "../../server/context/FirebaseContext";
 import { UserContext } from "../../server/context/UserContext";
-
+import {  useFormik} from 'formik';
+ import * as Yup from 'yup';
 import Banner from "../../components/Banner";
 
 const SignUpScreen = ({ navigation }) => {
-  const [userName, setUserName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
-  const [loading, setLoading] = useState();
-  const [profilePhoto, setProfilePhoto] = useState();
 
   const firebase = useContext(FirebaseContext);
   const [_, setUser] = useContext(UserContext);
@@ -41,59 +36,16 @@ const SignUpScreen = ({ navigation }) => {
       console.log("Error @signUp: ", error);
     }
   };
+  const SignInSchema = Yup.object().shape({
+    email: Yup.string().email('Invalid email').required(),
+    password: Yup.string().required(),
+  }); 
 
-  const [data, setData] = React.useState({
-    username: "",
-    password: "",
-    confirm_password: "",
-    check_textInputChange: false,
-    secureTextEntry: true,
-    confirm_secureTextEntry: true,
+  const {handleChange, handleBlur, handleSubmit, values, touched, errors, isValid} = useFormik({
+    validationSchema: SignInSchema,
+    initialValues:{ email: '', password: '' },
+    onSubmit: () => {signIn(values.email,values.password)}
   });
-
-  const textInputChange = (val) => {
-    if (val.length !== 0) {
-      setData({
-        ...data,
-        username: val,
-        check_textInputChange: true,
-      });
-    } else {
-      setData({
-        ...data,
-        username: val,
-        check_textInputChange: false,
-      });
-    }
-  };
-
-  const handlePasswordChange = (val) => {
-    setData({
-      ...data,
-      password: val,
-    });
-  };
-
-  const handleConfirmPasswordChange = (val) => {
-    setData({
-      ...data,
-      confirm_password: val,
-    });
-  };
-
-  const updateSecureTextEntry = () => {
-    setData({
-      ...data,
-      secureTextEntry: !data.secureTextEntry,
-    });
-  };
-
-  const updateConfirmSecureTextEntry = () => {
-    setData({
-      ...data,
-      confirm_secureTextEntry: !data.confirm_secureTextEntry,
-    });
-  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

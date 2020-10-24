@@ -7,6 +7,7 @@ const db = firebase.firestore();
 const UserProvider = ({ children }) => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [user, setUser] = useState(null);
+
   const userFirebase = {
     user,
     setUser,
@@ -15,8 +16,9 @@ const UserProvider = ({ children }) => {
         await firebase
           .auth()
           .signInWithEmailAndPassword(email, password)
+          
           .catch((error) => {
-            alert(error.message);
+            alert("Login failed. " + error.message);
           });
       } catch (e) {
         console.log(e);
@@ -26,14 +28,14 @@ const UserProvider = ({ children }) => {
       try {
         await firebase.auth().createUserWithEmailAndPassword(email, password);
       } catch (e) {
-        console.log(e);
+        alert(e);
       }
     },
     resetPassword: async (email) => {
       try {
         await firebase.auth().sendPasswordResetEmail(email);
       } catch (e) {
-        console.log(e);
+        alert(e);
       }
     },
     signOut: async () => {
@@ -41,7 +43,7 @@ const UserProvider = ({ children }) => {
         await firebase.auth().signOut();
         setUser(null);
       } catch (e) {
-        console.log(e);
+        alert(e);
       }
     },
     getCurrentUser: async () => {

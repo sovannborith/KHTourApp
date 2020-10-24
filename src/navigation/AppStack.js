@@ -27,6 +27,7 @@ import SignInScreen from "../../src/screens/authentication/SignInScreen";
 import SignUpScreen from "../../src/screens/authentication/SignUpScreen";
 import ForgetPasswordScreen from "../../src/screens/authentication/ForgetPasswordScreen";
 import HeaderLeft from "../../src/components/HeaderLeft";
+import AdminHomeScreen from "../../src/screens/admin/AdminHomeScreen";
 //import AsyncStorage from "@react-native-community/async-storage";
 import AboutUsScreen from "../screens/AboutUsScreen";
 
@@ -126,6 +127,11 @@ const AppStack = () => {
               <BookmarkScreen {...props} style={animatedStyle} />
             )}
           </MainStack.Screen>
+          <MainStack.Screen name="Admin">
+            {(props) => (
+              <AdminHomeScreen {...props} style={animatedStyle} />
+            )}
+          </MainStack.Screen>
           <MainStack.Screen name="AboutUsScreen">
             {(props) => (
               <AboutUsScreen {...props} style={animatedStyle} />
@@ -200,7 +206,7 @@ const AppStack = () => {
             contentContainerStyle={{ flex: 1 }}
             drawerContentOptions={{
               activeBackgroundColor: "transparent",
-              activeTintColor: "white",
+              activeTintColor:"#246b6b",
               inactiveTintColor: "white",
               
             }}
@@ -244,9 +250,9 @@ const styles = StyleSheet.create({
     elevation: 5,
     overflow: "hidden",
   },
-  drawerStyles: { flex: 1, width: "70%", backgroundColor: "transparent" },
+  drawerStyles: { flex: 1, width: "75%", backgroundColor: "transparent" },
   drawerItem: { alignItems: "flex-start", marginVertical: 0 },
-  drawerLabel: { color: "white", marginLeft: -16 },
+  drawerLabel: { color: "#246b6b", marginLeft: -16 },
   avatar: {
     borderRadius: 60,
     marginBottom: 16,

@@ -6,20 +6,16 @@ import {
   Title,
   Caption,
   Drawer,
-  Text,
-  TouchableRipple,
-  Switch,
 } from "react-native-paper";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { AntDesign, Feather } from "@expo/vector-icons";
+import { AntDesign, Feather,Octicons } from "@expo/vector-icons";
 import { UserContext } from "../server/context/UserContext";
 
 export function DrawerContent(props) {
-  const paperTheme = useTheme();
 
-  const { user, signOut, toggleTheme } = useContext(UserContext);
+  const { user, signOut } = useContext(UserContext);
   const avatarSize = 100;
 
   const handleLogPress = (user) => {
@@ -37,6 +33,7 @@ export function DrawerContent(props) {
         {...props}
         scrollEnabled={false}
         contentContainerStyle={{ flex: 1 }}
+        
       >
         <View
           style={{
@@ -72,9 +69,10 @@ export function DrawerContent(props) {
           <Drawer.Section style={styles.drawerSection}>
             <DrawerItem
               icon={({ color, size }) => (
-                <Icon name="home-outline" color={color} size={size} />
+                <Icon name="home-outline" color="#246b6b" size={size} />
               )}
               label="Home"
+              labelStyle={styles.drawerLabel}
               onPress={() => {
                 props.navigation.navigate("Home");
               }}
@@ -82,8 +80,9 @@ export function DrawerContent(props) {
 
             <DrawerItem
               icon={({ color, size }) => (
-                <Icon name="bookmark-outline" color={color} size={size} />
+                <Icon name="bookmark-outline" color="#246b6b" size={size} />
               )}
+              labelStyle={styles.drawerLabel}
               label="Bookmarks"
               onPress={() => {
                 props.navigation.navigate("BookmarkScreen");
@@ -91,8 +90,9 @@ export function DrawerContent(props) {
             />
             <DrawerItem
               icon={({ color, size }) => (
-                <Icon name="settings-outline" color={color} size={size} />
+                <Icon name="settings-outline" color="#246b6b" size={size} />
               )}
+              labelStyle={styles.drawerLabel}
               label="Settings"
               onPress={() => {
                 props.navigation.navigate("SettingsScreen");
@@ -100,14 +100,29 @@ export function DrawerContent(props) {
             />
             <DrawerItem
               icon={({ color, size }) => (
-                <Icon name="account-check-outline" color={color} size={size} />
+                <Icon name="account-check-outline" color="#246b6b" size={size} />
               )}
+              labelStyle={styles.drawerLabel}
               label="Support"
               onPress={() => {
                 props.navigation.navigate("SupportScreen");
               }}
             />
+            {user && 
+            <DrawerItem
+              icon={({ color, size }) => (
+                <Octicons name="settings" color="#246b6b" size={size} />
+              )}
+              labelStyle={styles.drawerLabel}
+              label="Manage"
+              onPress={() => {
+                props.navigation.navigate("Admin");
+              }}
+            />
+          }
           </Drawer.Section>
+
+          
           {/* <Drawer.Section title="Preferences">
             <TouchableRipple
               onPress={() => {
@@ -124,15 +139,18 @@ export function DrawerContent(props) {
           </Drawer.Section> */}
         </View>
       </DrawerContentScrollView>
-      <Drawer.Section style={styles.bottomDrawerSection}>
+      <Drawer.Section style={styles.bottomDrawerSection}
+        contentO
+      >
         <DrawerItem
           icon={({ color, size }) => (
             <AntDesign
               name={user ? "logout" : "login"}
               size={size}
-              color={color}
+              color="#246b6b"
             />
           )}
+          labelStyle={styles.drawerLabel}
           label={user ? "Sign Out" : "Sign In"}
           onPress={() => {
             handleLogPress(user);
@@ -140,8 +158,9 @@ export function DrawerContent(props) {
         />
         <DrawerItem
           icon={({ color, size }) => (
-            <Feather name="slack" size={size} color={color} />
+            <Feather name="slack" size={size} color="#246b6b" />
           )}
+          labelStyle={styles.drawerLabel}
           label="About Us"
           onPress={() => {
             props.navigation.navigate("AboutUsScreen");
@@ -156,6 +175,7 @@ const styles = StyleSheet.create({
   drawerContent: {
     flex: 1,
     paddingTop: 100,
+    color: "#246b6b"
   },
   userInfoSection: {
     paddingLeft: 50,
@@ -172,23 +192,28 @@ const styles = StyleSheet.create({
     marginTop: 20,
     flexDirection: "row",
     alignItems: "center",
+    color: "#246b6b"
   },
   section: {
     flexDirection: "row",
     alignItems: "center",
     marginRight: 15,
+    color: "#246b6b"
   },
   paragraph: {
     fontWeight: "bold",
     marginRight: 3,
+    color: "#246b6b"
   },
   drawerSection: {
     marginTop: 150,
+    
   },
   bottomDrawerSection: {
     marginBottom: 15,
     borderTopColor: "#f4f4f4",
     borderTopWidth: 1,
+    color: "#246b6b"
   },
   preference: {
     flexDirection: "row",
@@ -196,4 +221,5 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 16,
   },
+  drawerLabel: { color: "#246b6b"},
 });

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
-import { Formik, useFormik} from 'formik';
+import {  useFormik} from 'formik';
  import * as Yup from 'yup';
 
 import FormInput from "../../components/form/FormInput";
@@ -10,21 +10,25 @@ import { UserContext } from "../../server/context/UserContext";
   
 
 const SignInScreen = ({ navigation }) => {
-  //const [email, setEmail] = useState();
-  //const [password, setPassword] = useState();
   const [loading, setLoading] = useState(false);
-  const { login } = useContext(UserContext);
-  const signIn =(email, password) =>{    
+  const { login, user } = useContext(UserContext);
+  
+  const signIn =() =>
+  {    
       try {
         setLoading(true);
-        if(!isValid) return;
-        login(email, password);
-        alert("Login successful!");
-        navigation.navigate("Home");
-      } catch (e) {
-        alert(e);
+        console.log(loading);        
+        if (isValid) {
+          login(values.email, values.password);
+        }
+        if(user) {
+          navigation.navigate("Home");
+        }
+      } catch (e) {        
+        alert("Login failed! Please try again!");
       } finally {
         setLoading(false);
+        console.log(loading);
       }
   };
 
@@ -36,7 +40,7 @@ const SignInScreen = ({ navigation }) => {
   const {handleChange, handleBlur, handleSubmit, values, touched, errors, isValid} = useFormik({
     validationSchema: SignInSchema,
     initialValues:{ email: '', password: '' },
-    onSubmit: () => {signIn()}
+    onSubmit: () => {signIn(values.email,values.password)}
   });
 
   return (

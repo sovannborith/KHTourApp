@@ -3,41 +3,58 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import FormInput from "../../components/form/FormInput";
 import FormButton from "../../components/form/FormButton";
 import { UserContext } from "../../server/context/UserContext";
-
+import {  useFormik} from 'formik';
+ import * as Yup from 'yup';
 const ForgetPasswordScreen = ({ navigation }) => {
-  const [email, setEmail] = useState();
   const [loading, setLoading] = useState(false);
   const { resetPassword } = useContext(UserContext);
+
+  const SignInSchema = Yup.object().shape({
+    email: Yup.string().email('Invalid email').required()
+  }); 
+
+  const {handleChange, handleBlur, handleSubmit, values, touched, errors, isValid} = useFormik({
+    validationSchema: SignInSchema,
+    initialValues:{ email: ''},
+    onSubmit: () => {
+        try {
+          setLoading(true);
+          if(isValid){
+            resetPassword(values.email);
+            navigation.navigate("SignIn");
+            alert("Password reset link has sent to your email address");
+          }
+        } catch (e) {
+          alert(e);
+        } finally {
+          setLoading(false);
+        }
+      }});
+
+
   return (
     <View style={styles.container}>
       <Image source={require("../../assets/logo.png")} style={styles.logo} />
       <Text style={styles.text}>Reset Password</Text>
 
       <FormInput
-        labelValue={email}
-        onChangeText={(userEmail) => setEmail(userEmail)}
-        placeholderText="Email"
-        iconType="user"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        autoCorrect={false}
-      />
+              labelValue={values.email}
+              onChangeText={handleChange("email")}
+              onBlur={handleBlur("email")}
+              placeholderText="Email"
+              iconType="user"
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoCorrect={false}
+              error ={errors.email}
+              touched={touched.email}
+              autoFocus={true}
+            />
 
       <FormButton
         buttonTitle="Reset Password"
         loading={loading}
-        onPress={() => {
-          try {
-            setLoading(true);
-            resetPassword(email);
-            navigation.navigate("SignIn");
-            alert("Password reset link has sent to your email address");
-          } catch (e) {
-            alert(e);
-          } finally {
-            setLoading(false);
-          }
-        }}
+        onPress={handleSubmit}
       />
 
       <TouchableOpacity

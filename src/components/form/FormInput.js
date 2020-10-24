@@ -28,8 +28,12 @@ const FormInput = ({ labelValue, placeholderText, iconType, touched, error, auto
         alignItems: "center",
         width: 50,
         color: !touched ? "#878787" : !error? "#246b6b":"#d10000",
+        borderRightColor: !touched ? "#878787" : !error? "#246b6b":"#d10000",
+        borderRightWidth: 1,
       }}>
-        <AntDesign name={iconType} size={25} color={!touched ? "#878787" : !error? "#246b6b":"#d10000"} />
+        <AntDesign name={iconType} size={25} color={!touched ? "#878787" : !error? "#246b6b":"#d10000"} 
+          
+        />
       </View>
       <TextInput
         value={labelValue}
@@ -67,16 +71,3 @@ const FormInput = ({ labelValue, placeholderText, iconType, touched, error, auto
 
 export default FormInput;
 
-const styles = StyleSheet.create({
-  
-  inputField: {
-    padding: 10,
-    marginTop: 5,
-    marginBottom: 10,
-    width: windowWidth / 1.5,
-    height: windowHeight / 15,
-    fontSize: 16,
-    borderRadius: 8,
-    borderWidth: 1,
-  },
-});
