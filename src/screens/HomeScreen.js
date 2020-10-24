@@ -22,7 +22,7 @@ const HomeScreen = ({ navigation }) => {
         barStyle={theme.dark ? "light-content" : "dark-content"}
         style={{ backgroundColor: "#019131" }}
       />
-      <View style={{ flex: 1, backgroundColor: "#c6ecec" }}>
+      <View style={{ flex: 1, backgroundColor: "#ffffff" }}>
         <Banner horizontal={false} />
         <ScrollView
           style={styles.container}

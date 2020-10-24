@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
 import {
   useTheme,
   Avatar,
@@ -20,8 +20,29 @@ export function DrawerContent(props) {
 
   const handleLogPress = (user) => {
     if (user) {
-      signOut();
-      props.navigation.navigate("Home", {screen: "Home"});
+
+      Alert.alert(
+        //title
+        'Sign Out Confirmation',
+        //body
+        'Are you sure want to sign out?',
+        [
+          {
+            text: 'Yes',
+            onPress: () => {
+              signOut();
+              props.navigation.navigate("Home", {screen: "Home"});
+            }
+          },
+          {
+            text: 'Cancel',
+            onPress: () => true, style: 'cancel'
+          },
+        ],
+        {cancelable: false},
+        //clicking out side of alert will not cancel
+      );
+      
     } else {
       props.navigation.navigate("AuthScreen");
     }

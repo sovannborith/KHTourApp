@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, Image, StyleSheet, KeyboardAvoidingView, Platform  } from "react-native";
 import {  useFormik} from 'formik';
  import * as Yup from 'yup';
 
@@ -45,10 +45,11 @@ const SignInScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Image source={require("../../assets/logo.png")} style={styles.logo} />
-      <Text style={styles.text}>Sign In</Text>
-        
+      
+        <Image source={require("../../assets/logo.png")} style={styles.logo} />
+        <Text style={styles.text}>Sign In</Text>        
           <View style={{width: "100%"}}>
+          <KeyboardAvoidingView behavior={Platform.OS=="ios" ? "padding" : null}>
             <FormInput
               labelValue={values.email}
               onChangeText={handleChange("email")}
@@ -73,7 +74,7 @@ const SignInScreen = ({ navigation }) => {
               error ={errors.password}
               touched={touched.password}
             />
-
+</KeyboardAvoidingView>
             <FormButton
               buttonTitle="Sign In"            
               loading={loading}
@@ -89,6 +90,7 @@ const SignInScreen = ({ navigation }) => {
             <Text style={styles.navButtonText}>Forgot Password?</Text>
           </TouchableOpacity>
           </View>
+      
     </View>
   );
 };
