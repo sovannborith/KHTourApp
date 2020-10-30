@@ -216,6 +216,7 @@ const ProvinceStackScreen = ({ navigation }) => (
       name="ProvinceList"
       component={ProvinceListScreen}
       options={{
+        title: "",
         headerLeft: () => (
           <Icon.Button
             name="ios-menu"
@@ -230,6 +231,7 @@ const ProvinceStackScreen = ({ navigation }) => (
       name="ProvinceDetail"
       component={ProvinceDetailScreen}
       options={{
+        title: "",
         headerLeft: () => (
           <Icon.Button
             name="ios-menu"

@@ -112,27 +112,47 @@ const AppStack = () => {
             }}
             component={MainTabNavigation}
           />
-          <MainStack.Screen name="SupportScreen">
+          <MainStack.Screen name="SupportScreen"
+            options={{
+              title: "",
+            }}
+          >
             {(props) => (
               <SupportScreen {...props} style={animatedStyle} />
             )}
           </MainStack.Screen>
-          <MainStack.Screen name="SettingsScreen">
+          <MainStack.Screen name="SettingsScreen"
+            options={{
+              title: "",
+            }}
+          >
             {(props) => (
               <SettingsScreen {...props} style={animatedStyle} />
             )}
           </MainStack.Screen>
-          <MainStack.Screen name="BookmarkScreen">
+          <MainStack.Screen name="BookmarkScreen"
+            options={{
+              title: "",
+            }}
+          >
             {(props) => (
               <BookmarkScreen {...props} style={animatedStyle} />
             )}
           </MainStack.Screen>
-          <MainStack.Screen name="Admin">
+          <MainStack.Screen name="Admin"
+            options={{
+              title: "",
+            }}
+          >
             {(props) => (
               <AdminHomeScreen {...props} style={animatedStyle} />
             )}
           </MainStack.Screen>
-          <MainStack.Screen name="AboutUsScreen">
+          <MainStack.Screen name="AboutUsScreen"
+            options={{
+              title: "",
+            }}
+          >
             {(props) => (
               <AboutUsScreen {...props} style={animatedStyle} />
             )}

@@ -16,8 +16,7 @@ const SignInScreen = ({ navigation }) => {
   const signIn =() =>
   {    
       try {
-        setLoading(true);
-        console.log(loading);        
+        setLoading(true);       
         if (isValid) {
           login(values.email, values.password);
         }
@@ -28,7 +27,6 @@ const SignInScreen = ({ navigation }) => {
         alert("Login failed! Please try again!");
       } finally {
         setLoading(false);
-        console.log(loading);
       }
   };
 
