@@ -164,7 +164,7 @@ const AppStack = () => {
           <AuthStack.Screen
             name="SignUp"
             options={{
-              //title: "Sign Up",
+              title: "",
               headerBackTitle: null,
               headerBackTitleVisible: false,
             }}
@@ -174,7 +174,7 @@ const AppStack = () => {
             name="SignIn"
             component={SignInScreen}
             options={{
-              title: "Sign In",
+              title: "",
               headerBackTitle: null,
               headerBackTitleVisible: false,
             }}
@@ -183,7 +183,7 @@ const AppStack = () => {
           <AuthStack.Screen
             name="ForgetPassword"
             options={{
-              title: "Reset Password",
+              title: "",
               headerBackTitle: null,
               headerBackTitleVisible: false,
             }}

@@ -13,7 +13,7 @@ const FormInput = ({ labelValue, placeholderText, iconType, touched, error, auto
       marginTop: 5,
       marginBottom: 10,
       width: "100%",
-      height: 40,
+      height: 50,
       borderColor: !touched ? "#878787" : !error? "#246b6b":"#d10000",
       borderRadius: 3,
       borderWidth: 1,
@@ -47,7 +47,7 @@ const FormInput = ({ labelValue, placeholderText, iconType, touched, error, auto
         }}
         numberOfLines={1}
         placeholder={placeholderText}
-        placeholderTextColor="#b0b0b0"
+        placeholderTextColor={!touched ? "#878787" : !error? "#b0b0b0":"#d10000"}
         underlineColorAndroid="transparent"
         autoFocus={autoFocus}
         {...rest}

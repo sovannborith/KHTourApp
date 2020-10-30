@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
-import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, Image, StyleSheet , KeyboardAvoidingView, Platform} from "react-native";
 import FormInput from "../../components/form/FormInput";
 import FormButton from "../../components/form/FormButton";
 import { UserContext } from "../../server/context/UserContext";
 import {  useFormik} from 'formik';
  import * as Yup from 'yup';
+ import * as Animatable from 'react-native-animatable';
 const ForgetPasswordScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const { resetPassword } = useContext(UserContext);
@@ -33,37 +34,55 @@ const ForgetPasswordScreen = ({ navigation }) => {
 
 
   return (
-    <View style={styles.container}>
-      <Image source={require("../../assets/logo.png")} style={styles.logo} />
-      <Text style={styles.text}>Reset Password</Text>
+    <KeyboardAvoidingView behavior={Platform.OS=="ios" ? "padding" : null} style={styles.container}>
+      <View style={{flex: 1}}>      
+        <View style={{alignItems:"center"}}>
+          <Image source={require("../../assets/logo.png")} style={styles.logo} />
+        </View>
+        <Animatable.View 
+            animation="fadeInUpBig"
+            style={styles.footer}
+        >
+        <View style={styles.signInWrapper}>
+          <View style={styles.loginHeader}>
+            <Text style={styles.text}>Reset Password</Text>  
+          </View>        
+          <View style={styles.formElement}> 
+            <FormInput
+                labelValue={values.email}
+                onChangeText={handleChange("email")}
+                onBlur={handleBlur("email")}
+                placeholderText="Email"
+                iconType="user"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                autoCorrect={false}
+                error ={errors.email}
+                touched={touched.email}
+                autoFocus={true}
+              />
 
-      <FormInput
-              labelValue={values.email}
-              onChangeText={handleChange("email")}
-              onBlur={handleBlur("email")}
-              placeholderText="Email"
-              iconType="user"
-              keyboardType="email-address"
-              autoCapitalize="none"
-              autoCorrect={false}
-              error ={errors.email}
-              touched={touched.email}
-              autoFocus={true}
+            <FormButton
+              buttonTitle="Reset Password"
+              loading={loading}
+              onPress={handleSubmit}
             />
 
-      <FormButton
-        buttonTitle="Reset Password"
-        loading={loading}
-        onPress={handleSubmit}
-      />
+            <TouchableOpacity
+              style={styles.forgotButton}
+              onPress={() => navigation.navigate("SignIn")}
+            >
+              <Text style={styles.navButtonText}>Sign In</Text>
+            </TouchableOpacity>
+      
+          </View>
+          <View style={styles.formFooter}>
 
-      <TouchableOpacity
-        style={styles.forgotButton}
-        onPress={() => navigation.navigate("SignIn")}
-      >
-        <Text style={styles.navButtonText}>Sign In</Text>
-      </TouchableOpacity>
-    </View>
+          </View>
+        </View>
+      </Animatable.View>
+      </View>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -71,9 +90,8 @@ export default ForgetPasswordScreen;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#ffffff",
-    flex: 1,
-    alignItems: "center",
+    backgroundColor: "#f9fafd",
+    flex: 1,    
     padding: 20,
   },
   logo: {
@@ -81,11 +99,47 @@ const styles = StyleSheet.create({
     width: 150,
     resizeMode: "cover",
   },
+  signInWrapper:{
+    borderColor: "#246b6b",
+    //backgroundColor: "#246b6b",
+    borderWidth: 1,
+    /* borderTopLeftRadius: 25,
+    borderTopRightRadius: 25, */
+    borderRadius: 25,
+    alignItems: "center",
+    justifyContent: "flex-start",
+    //padding: 10,
+    height: "100%"
+    
+  },
+  loginHeader:{
+    position: "relative",
+    top: -1,
+    height: 50,
+    backgroundColor: "#246b6b",
+    borderColor: "#246b6b",
+    borderWidth: 0,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center"
+  },
   text: {
     fontSize: 28,
     marginBottom: 10,
-    color: "#246b6b",
-    fontWeight: "bold"
+    color: "#fff",
+    fontWeight: "bold",
+    top: 3
+  },
+  formElement:{
+    padding: 10,
+    flex: 1,
+    alignItems: "center",
+    width: "100%"
+  },
+  signIn:{
+
   },
   navButton: {
     marginTop: 15,
@@ -105,4 +159,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#246b6b",
   },
+  formFooter:{
+    height: 50,
+    backgroundColor: "#246b6b",
+    borderBottomLeftRadius: 25,
+    borderBottomRightRadius: 25,
+    width: "100%",
+    top: 1
+  },
+  footer: {
+    flex: Platform.OS === 'ios' ? 3 : 5,
+    
+},
 });

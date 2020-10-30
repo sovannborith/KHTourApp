@@ -16,7 +16,7 @@ import { UserContext } from "../server/context/UserContext";
 export function DrawerContent(props) {
 
   const { user, signOut } = useContext(UserContext);
-  const avatarSize = 100;
+  const avatarSize = 100
 
   const handleLogPress = (user) => {
     if (user) {
